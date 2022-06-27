@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+
+
+
+/* TAGS */
+body { 
+}
+ul li{
+	list-style:none; /* jsancheza */
+}
+hr{color:#C5C19C;height:0px;} /* hr */
+
+h2{
+	font-weight:bold;
+}
+h3 {
+font-size: 1.17em;
+font-weight: bold;
+}
+h3 {
+line-height: 15px;
+letter-spacing: normal;
+}
+.Normal, .NormalDisabled, .NormalDeleted {
+	font: 12px Arial, Helvetica, sans-serif;
+}
+
+/* tipo de cambio */
+small {
+font-size: smaller;
+}
+/* Anexo Ajested de ESTILOS jsancheza */
+
+/* estilo en user login */
+.user-login a{	color: #999; padding-left:0px; font: 12px Arial, Helvetica, sans-serif; font-weight:bold;}
+/* No quitar borde en name user.userDisplayName li a{ border-right: hidden solid 0px;}.userDisplayName li a{ border-right: solid 0px;}.buttonGroup ul{border-right: solid 0px;}.buttonGroup ul li{border-right: hidden}.buttonGroup ul li a{border-right: solid 0px;}
+*/
+
+/* Buscador */
+.dnnFormItem input, .dnnFormItem .dnnFormInput, .dnnFormItem textarea { padding:0px;	background:#FFFFFF;}
+.dnnSearchInput, .dnnFormItem{ width:340px; padding:0; margin:0;}
+.dnnForm .dnnFormItem { padding:0; margin:0;}
+
+/* Menu adecuaciones */
+
+
+/* Formularios login */
+/*.dnnFormItem input{width: 250px;border: 1px solid #8D8D91;padding: 5px;}*/
+
+.NormalTextbox {	width: 250px;	border: 1px solid #8D8D91;	padding: 5px;}
+select {background-color: #ECEBE0;border: 1px solid #8D8D91;padding: 3px 0 3px 3px;}
+
+/* MenuPAsesores */
+.MenuPAsesores{	float:right; display:block; width:690px; height:29px;}
+
+
+/* Ventana modal, compatibilidad IE7 */
+.ui-dialog-buttonpane{ padding-left:15px;}
+.ui-button{ padding:5px; border:#333 solid 1px; background-color: #282828;}
+
+/* ult modif */
+::selection {
+background: #333;
+color: #fff;
+text-shadow: none;
+}
