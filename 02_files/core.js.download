@@ -1,0 +1,88 @@
+/* Core JavaScript
+  * All JavaScript plugin information lives in /js/plugins.js
+  * You'll find URLs to the plugins home page
+*/
+
+/* Prevent conflicts whenever possible */
+
+var _SM = {
+
+  /* Language Drop Down
+    * Out of scope but you should consider this as an alternative to an ordinary drop down <select> node
+    * You'd need javascript in either case, so by using this approach, you can create custom styled drop downs :)
+  */
+  dropDown : function(selector){
+    var target = jQuery(selector);
+    if(target.length > 0){
+      var selectionTarget = target.find('#choice');
+        var options = target.find('li');
+        target.toggle(function(event){
+          event.preventDefault();
+          event.stopPropagation(); 
+          showList(options);
+        },
+        function(event){
+          event.preventDefault();
+          event.stopPropagation(); 
+          hideList(options);
+        });
+      function showList(list){var listContainer = list.parent();var targetList = list;listContainer.fadeIn(400)};
+      function hideList(list){var listContainer = list.parent();var targetList = list;listContainer.fadeOut(400)};}
+      
+  },
+  
+  /* Top Slide Down Navigation
+    * The Object passed into this method can be any element (node). The node must have a child with the className 'child'
+    * All Objects will have mouseover/moustout type events attached to them via hoverIntent (reference plugins.js for Plugin project page
+    * We are equalizing the heights of the 'child' node's immediate children
+  */
+  navigationSlideDown : function(selector){
+    var target = jQuery(selector);
+    if(target.length > 0){
+      target.each(function(){
+        var currentNode = jQuery(this);
+        var displayTarget = currentNode.find('.child');
+
+        var makeTall = function(){
+          displayTarget.stop(false,true).animate({
+            height: 'toggle' ,
+            easing: 'linear'
+          },300,
+          function(){
+            // Equalize inner content's height in the case of background colors or borders
+            var equalizeNavigationContent = _SM.equalizeNavContent(displayTarget);
+          });
+        };
+        
+        var makeShort = function(){
+          displayTarget.stop(false,true).animate({
+            height: 'toggle' ,
+            easing: 'linear'
+          },300);
+        };
+        
+        currentNode.hoverIntent(makeTall, makeShort);
+        
+      });
+    }
+  },
+  
+  /* Height Equalizer Plugin
+   *  This will match a group (array) of Objects' heights
+  */
+  equalizeNavContent : function(selector){
+    var target = jQuery(selector);
+    if(target.length > 0){
+      target.equalizer({
+        columns: target.find('> div'),
+        useHeight  : 'inner',
+        min: 0,
+        max: 0,
+        resizeable : true
+      });
+    }
+  
+  }
+
+}
+
