@@ -1,0 +1,30 @@
+TABLE
+{
+    BORDER-RIGHT: #8cb2e7 1px solid; 
+    BORDER-TOP: #8cb2e7 1px solid; 
+    BORDER-LEFT: #8cb2e7 1px solid; 
+    BORDER-BOTTOM: #8cb2e7 1px solid;
+    cursor:hand;
+}
+
+TD,th
+{
+    FONT-SIZE: 9px; FONT-FAMILY: Arial;
+    /*
+    BORDER-RIGHT: #8cb2e7 1px solid; 
+    BORDER-TOP: #8cb2e7 1px solid; 
+	*/
+}
+TR
+{
+behavior:url(def.htc);
+}
+.cTitle
+{
+    cursor:default;
+    background-Color:gainsboro;
+}
+body
+{
+	background-color:#E7F3FF;
+}

@@ -1,0 +1,137 @@
+//Abre o cierra una ventana, si es la primera vez carga la pagina inicial 
+function fPanelMostrarOcultarDetalle(cmd)
+{
+    if(typeof(cmd.Abrir) == "undefined")
+    {
+        cmd.Abrir= true;
+    }
+    
+    var objTd= cmd.parentNode.parentNode.parentNode.parentNode.parentNode
+    var objDiv = objTd.getElementsByTagName("DIV")[0]
+    
+
+    if (cmd.Abrir)
+    {
+        cmd.Abrir=false;
+        cmd.src='images/mas.gif'
+        cmd.alt='Mostrar'
+
+        objDiv.style.display = "none"
+    }
+    else
+    {
+        cmd.Abrir=true;
+        cmd.src='images/menos.gif'
+        cmd.alt='Ocultar'
+
+        objDiv.style.display = ""
+    
+        var oFrame = objDiv.getElementsByTagName("IFRAME")[0];
+        if (!oFrame.cargado)
+        {
+            oFrame.cargado = true;
+            oFrame.src = oFrame.url
+        }
+    }
+}
+
+//Cierra un panel
+function fPanelCerrar(divObj)
+{
+    var cmdMostrar = divObj.parentNode.getElementsByTagName("IMG")[1]
+    fPanelMostrarOcultarDetalle(cmdMostrar);
+    //cmdMostrar.click();
+}
+
+
+//Aplica a toda la tabla el comportamiento del boton cmdMostrar
+function fTablaVentanaMostrarOcultarDetalle(e) {
+	if (!e) var e = window.event;
+    var divContenedor = this.parentNode
+    var cmdMostrar = divContenedor.getElementsByTagName("IMG")[1]
+    if (e.srcElement != cmdMostrar)
+    {
+        try
+        {
+            cmdMostrar.click()
+        }
+        catch(err)
+        {
+
+        }
+    }
+}
+
+//PreCarga un panel con la url indicada y le asigna un texto de ayuda
+function PanelPreCargar(divContenedor, Url, Ayuda)
+{
+    divContenedor.getElementsByTagName("IFRAME")[0].cargado = false;
+
+    fPanelCerrar(divContenedor);
+    divContenedor.getElementsByTagName("IFRAME")[0].url=Url;
+    divContenedor.parentNode.getElementsByTagName("IMG")[0].title=Ayuda;
+    divContenedor.parentNode.getElementsByTagName("TABLE")[0].title=Ayuda;
+    divContenedor.parentNode.getElementsByTagName("TABLE")[0].onclick = fTablaVentanaMostrarOcultarDetalle
+}
+
+//Obtiene el objeto por nombre (compatibilidad)
+function obj(Nombre)
+{
+    var obj = document.getElementById(Nombre)
+    if (obj==null)
+    {
+        prompt("",Nombre)
+    }
+    return obj
+}
+
+//Carga un panel con la url indicada y le asigna un texto de ayuda
+function PanelCargar(divContenedor, Url, Ayuda)
+{
+    divContenedor.getElementsByTagName("IFRAME")[0].cargado = true;
+
+    divContenedor.getElementsByTagName("IFRAME")[0].src=Url;
+    divContenedor.parentNode.getElementsByTagName("IMG")[0].title=Ayuda;
+    divContenedor.parentNode.getElementsByTagName("TABLE")[0].title=Ayuda;
+    if (Url=="")
+    {
+        fPanelCerrar(divContenedor);
+    }
+}
+
+
+function fConsultar(Tipo, Id)
+{
+    //alert(Id)
+    obj('DivPanel').style.display = "none"
+    obj('DivConsulta').style.display = ""
+    try
+    {
+        obj('DivConsulta').scrollIntoView(true)
+    }
+    catch(err){}
+
+    IframeConsulta.window.document.objConsultar.Tipo.value = Tipo
+    IframeConsulta.window.document.objConsultar.Id.value = Id
+    IframeConsulta.window.document.objConsultar.submit()
+}
+
+function fNavegar(Url)
+{
+    debugger;
+    obj('DivPanel').style.display = "none"
+    obj('DivConsulta').style.display = ""
+
+    
+    IframeConsulta.window.location.replace(Url);
+}
+
+
+function fWindowOcultar()
+{
+    obj('DivPanel').style.display = ""
+    obj('DivConsulta').style.display = "none"
+    IframeConsulta.window.location.replace("Consultar.aspx")
+}
+
+

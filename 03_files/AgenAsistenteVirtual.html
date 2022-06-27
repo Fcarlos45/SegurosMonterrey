@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0084)https://www.lineamonterrey.com.mx/AsesoresWeb/PanelControl/AgenAsistenteVirtual.aspx -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link type="text/css" rel="stylesheet" href="./Datos.css">
+<style type="text/css">
+body
+{
+    scrollbar-3dlight-color:#000080;
+    scrollbar-arrow-color:blue;
+    scrollbar-base-color:#FFFFFF;
+    scrollbar-face-color:#FFFFFF;
+    scrollbar-highlight-color:#FFFFFF;
+    scrollbar-shadow-color:#FFFFFF;
+
+    scrollbar-darkshadow-color:#000080;
+}
+
+.cTitulo
+{
+    font-weight: bold; font-family: Arial;Cursor:default;background-color:#7B9EDE;
+    BORDER-RIGHT: #000000 1px solid;
+    BORDER-TOP: #000000 1px solid;
+    BORDER-BOTTOM: #000000 1px solid;
+    BORDER-LEFT: #000000 1px solid;
+}
+
+.cId
+{
+    cursor:hand;
+}
+.cIdOculto
+{
+    display:none;
+}
+
+TD
+{
+    cursor:hand;
+    text-indent: 5px;
+    font-family: Arial;
+    font-size:10px;
+}
+</style>
+    <title>
+	Panel
+</title></head>
+<body topmargin="2">
+            
+<form name="aspnetForm" method="post" action="https://www.lineamonterrey.com.mx/AsesoresWeb/PanelControl/AgenAsistenteVirtual.aspx" id="aspnetForm">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJNjIxNDA4NjQwZBgBBSRjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJG9HcmlkRGF0b3MPPCsACgEIAgFkgp3HuMCDA2dBNpycn56MRYVKsQk=">
+</div>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="36B5BB6A">
+</div>
+    
+
+
+<table onclick="parent.fNavegar(&#39;../Servicios/CentroContacto/WalletPolicies2.aspx&#39;)" cellspacing="3" cellpadding="0" border="0" style="border-style:None;border-collapse:collapse;">
+<tbody><tr>
+    <td align="center" style="width:40px;"> &nbsp;</td>
+    <td align="left" style="width:100px;">Estatus</td>
+	<td align="center" style="width:50px;">Polizas</td>
+	<td align="center" style="width:50px;">Clientes</td>
+</tr>
+</tbody></table>
+
+
+<div>
+	<table cellspacing="0" cellpadding="3" border="0" id="ctl00_ContentPlaceHolder1_oGridDatos" style="border-style:None;border-collapse:collapse;">
+		<tbody><tr>
+			<td align="center" style="width:30px;">
+<img src="./PuntoAzul.JPG">
+</td><td align="left" style="width:100px;">Inscritos</td><td align="right" style="width:50px;">38</td><td align="right" style="width:50px;">32</td>
+		</tr><tr>
+			<td align="center" style="width:30px;">
+<img src="./PuntoAzul.JPG">
+</td><td align="left" style="width:100px;"> Vigentes</td><td align="right" style="width:50px;">38</td><td align="right" style="width:50px;">32</td>
+		</tr><tr>
+			<td align="center" style="width:30px;">
+<img src="./PuntoAzul.JPG">
+</td><td align="left" style="width:100px;"> Canceladas</td><td align="right" style="width:50px;">0</td><td align="right" style="width:50px;">0</td>
+		</tr>
+	</tbody></table>
+</div>
+
+
+
+
+</form>
+
+<script type="text/javascript">
+function ffalse()
+{
+    try
+    {
+        if (event.ctrlKey)
+        {
+            return true;
+        }
+    }
+    catch(err){}
+    return false;
+}
+document.body.oncontextmenu = ffalse;
+document.body.ondragstart = ffalse;
+document.body.onselectstart = ffalse;
+
+/*
+if(DetalleMostrar == '1')
+{
+    parent.fShow("../consultas/DetallePoliza.aspx")
+    //open("../consultas/DetallePoliza.aspx")
+} 
+*/
+function fDatosClick(e2)
+{
+    var e = null;
+    try
+    {
+        e = event.srcElement;
+    }
+    catch(err)
+    {
+        e = e2.target
+    }
+
+    for (var n=1; n<=10;n++)
+    {
+        if (e.tagName=="TR")
+        {
+            for (var m=0; m<e.cells.length;m++)
+            {
+                if (e.cells[m].className=="cId" || e.cells[m].className=="cIdOculto")
+                {
+                    var Id = e.cells[m].innerHTML 
+                    parent.fConsultar(Tipo,Id)
+                    return;
+                }
+            }
+            break;
+        }
+        else
+        {
+            e = e.parentNode;
+        }
+    }
+}
+
+//Asigna el click
+if (typeof(EsEditable)=='undefined')
+{
+    var EsEditable = false;
+}
+
+if (EsEditable)
+{
+    var GridDatos = null
+    try{
+        GridDatos = document.getElementById('ctl00_ContentPlaceHolder1_oGridDatos')
+    }
+    catch(err){}
+    
+    if(GridDatos != null)
+    {
+        GridDatos.onclick = fDatosClick
+        GridDatos.style.cursor ="hand";
+    }
+}
+
+
+</script>
+</body></html>

@@ -1,0 +1,63 @@
+﻿
+.cEncabezadoRojo
+{
+    font-family: Arial;Cursor:default;color:red;
+}
+
+.cTitulo
+{
+    font-weight: bold; font-family: Arial;Cursor:default;background-color:#7B9EDE;border-bottom-style:solid;
+}
+.cIframe
+{
+    height:100%;
+    width:100%;
+}
+
+.cSeccionTitulo
+{
+    font-size: 11px; font-weight: bold; font-family: Arial;Cursor:default;
+}
+
+.cTitulo2
+{
+    FONT-SIZE: 11px; COLOR: #000066; FONT-FAMILY: Arial;
+}
+
+.cBordeAzul
+{
+    BORDER-RIGHT: #8cb2e7 1px solid; 
+    BORDER-TOP: #8cb2e7 1px solid; 
+    BORDER-LEFT: #8cb2e7 1px solid; 
+    BORDER-BOTTOM: #8cb2e7 1px solid
+}
+.cBoton
+{
+    cursor:hand;
+}
+
+
+.cDivWindow
+{
+    height:110px;
+    left:0;
+    top:0;
+}
+
+.cMaximizado
+{
+    left:0;
+    top:0;
+    height:98%;
+    width:205%;
+    POSITION: absolute;
+    z-index:100;
+    background-color:ButtonFace;
+}
+
+TD
+{
+	font-family:Arial;font-size:11px;
+}
+
+

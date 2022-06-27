@@ -1,0 +1,381 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0080)https://www.lineamonterrey.com.mx/AsesoresWeb/PanelControl/AgenPanelControl.aspx -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head id="Head1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+function AyudaOcultar()
+{
+    document.getElementById("divAyuda").style.display="none";
+}
+</script>
+<title>
+	Panel de Control
+</title><link type="text/css" rel="stylesheet" href="./PanelControl.css">
+<script src="./panelcontrol.js.download" type="text/javascript"></script>
+<style type="text/css">
+.cBrMedio
+{
+    font-size:4px;    
+}
+.cBandera
+{
+    width:23px;
+}
+.cSup
+{
+    font-size:8px;vertical-align:text-top;display:none;
+}
+
+</style>
+</head>
+
+<body rightmargin="0" topmargin="0" bottommargin="0" leftmargin="0">
+
+<div name="DivConsulta" id="DivConsulta" class="cIframe" style="width: 100%; height: 500px; display: none;">
+    <table width="100%" border="0" style="height:100%">
+    <tbody><tr><td style="height:30px">
+        <div class="cTitulo2" style="cursor:hand;font-weight:bold;font-style:italic;text-decoration:underline;" onclick="fWindowOcultar()"><img src="./atras.jpg">Regresar a indicadores de operación</div><br>
+    </td></tr>
+    <tr><td style="height:99%">
+        <iframe name="IframeConsulta" src="./Consultar.html" frameborder="0" style="width:100%;height:100%" class="cIframe" scrolling="auto"></iframe>
+    </td></tr>
+    </tbody></table>
+</div>
+
+
+<div name="divAyuda" id="divAyuda" onclick="AyudaOcultar()" style="position:absolute;left:400px;top:220px;background-image: url(images/Globo.gif);width:206px;height:87px;font-family:Arial;font-size:10px;cursor:hand;">
+<table align="center" width="90%"><tbody><tr><td align="center">
+<br><b>Te invitamos a conocer la nueva 
+sección de Avance Diario de Premios</b>
+</td></tr></tbody></table>
+</div>
+
+
+
+
+
+<form name="form1" method="post" action="https://www.lineamonterrey.com.mx/AsesoresWeb/PanelControl/AgenPanelControl.aspx" id="form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE3NDIyODE1NTRkZEOsbgmzVM9fq191P/YAqTg5SGap">
+</div>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="ACAF4AF0">
+</div>
+
+<div name="DivPanel" id="DivPanel" class="cIframe" style="overflow:visible;">
+<div style="color:#000000;font-size:14px;text-align:center;font-family:Arial;font-weight:bold;">Indicadores de operación marzo 2022</div> 
+<br>
+
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tbody><tr>
+<td width="20px"></td> 
+<td width="55%" valign="top">
+    
+    <!--Cobranza-->
+    <span class="cSeccionTitulo" title="">Cargo Automático <span class="cSup">1</span></span>
+    <div name="divWindow">
+    <table style="HEIGHT: 20px;" cellspacing="0" cellpadding="0" border="0" background="./barra_001.gif" title="Asesores con pólizas en cargo automático en las que no fue posible procesar el pago">
+    <tbody><tr>
+    <td style="width:30px; height: 20px;"><img alt="" src="./bandera_roja.gif" class="cBandera" title="Asesores con pólizas en cargo automático en las que no fue posible procesar el pago"></td>
+    <td style="width:99%;FONT-SIZE: 11px; COLOR: #000066; FONT-FAMILY: Arial; height: 20px;" nowrap=""><b>Seguimiento a Cargo Automático</b>&nbsp;</td>
+     <td align="right" style="height: 20px"><img class="cBoton" onclick="fPanelMostrarOcultarDetalle(this)" src="./mas.gif" alt="Mostrar">&nbsp;</td>
+    </tr>
+    </tbody></table>
+        <div class="cBordeAzul cDivWindow" name="divCobranzaRechazoBancarioCargoAutomatico" id="divCobranzaRechazoBancarioCargoAutomatico" style="display: none;"><iframe src="./Pausa.html" id="ifCobranzaRechazoBancarioCargoAutomatico" frameborder="0" class="cIframe"></iframe></div>
+    </div>
+<br>
+    
+    <span class="cSeccionTitulo" title="">Pólizas tradicionales <span class="cSup">1</span></span>
+    <div>
+    <table style="HEIGHT: 20px" cellspacing="0" cellpadding="0" border="0" background="./barra_001.gif" title="Pólizas que tienen recibos pendientes de pago en este mes">
+    <tbody><tr>
+    <td style="width:30px"><img alt="" src="./bandera_Amarilla.gif" class="cBandera" title="Pólizas que tienen recibos pendientes de pago en este mes"></td>
+    <td style="width:99%;FONT-SIZE: 11px; COLOR: #000066; FONT-FAMILY: Arial" nowrap=""><b>Pendientes de pago</b></td>
+    <td align="right"><img class="cBoton" onclick="fPanelMostrarOcultarDetalle(this)" src="./mas.gif" alt="Mostrar">&nbsp;</td>
+    </tr>
+    </tbody></table>
+        <div class="cBordeAzul cDivWindow" name="divCobranzaMes" id="divCobranzaMes" style="display: none;"><iframe src="./Pausa(1).html" id="ifCobranzaMes" frameborder="0" class="cIframe"></iframe></div>
+    </div>
+<div class="cBrMedio">&nbsp;</div>
+    <div>
+    <table style="HEIGHT: 20px" cellspacing="0" cellpadding="0" border="0" background="./barra_001.gif" title="Pólizas que tienen recibo pagado durante el mes">
+    <tbody><tr>
+    <td style="width:30px"><img alt="" src="./bandera_Verde.gif" class="cBandera" title="Pólizas que tienen recibo pagado durante el mes"></td>
+    <td style="width:99%;FONT-SIZE: 11px; COLOR: #000066; FONT-FAMILY: Arial" nowrap=""><b>Pagadas</b></td>
+    <td align="right"><img class="cBoton" onclick="fPanelMostrarOcultarDetalle(this)" src="./mas.gif" alt="Mostrar">&nbsp;</td>
+    </tr>
+    </tbody></table>
+        <div class="cBordeAzul cDivWindow" name="divCobranzaPagadas" id="divCobranzaPagadas" style="display: none;"><iframe src="./Pausa(2).html" frameborder="0" class="cIframe"></iframe></div>
+    </div>
+<div class="cBrMedio">&nbsp;</div>
+
+    <div>
+    <table style="HEIGHT: 20px" cellspacing="0" cellpadding="0" border="0" background="./barra_001.gif" title="Pólizas que tienen saldo en préstamo automático">
+    <tbody><tr>
+    <td style="width:30px"><img alt="" src="./bandera_Amarilla.gif" class="cBandera" title="Pólizas que tienen saldo en préstamo automático"></td>
+    <td style="width:99%;FONT-SIZE: 11px; COLOR: #000066; FONT-FAMILY: Arial" nowrap=""><b>Pagadas con préstamo automático</b></td>
+    <td align="right"><img class="cBoton" onclick="fPanelMostrarOcultarDetalle(this)" src="./mas.gif" alt="Mostrar">&nbsp;</td>
+    </tr>
+    </tbody></table>
+        <div class="cBordeAzul cDivWindow" name="divCobranzaPagadasConPrestamo" id="divCobranzaPagadasConPrestamo" style="display: none;"><iframe src="./Pausa(3).html" frameborder="0" class="cIframe"></iframe></div>
+    </div>
+
+<div class="cBrMedio">&nbsp;</div>
+    <div>
+    <table style="HEIGHT: 20px" cellspacing="0" cellpadding="0" border="0" background="./barra_001.gif" title="Pólizas canceladas por falta de pago, Prorrogadas y Saldadas">
+    <tbody><tr>
+    <td style="width:30px"><img alt="" src="./bandera_roja.gif" class="cBandera" title="Pólizas canceladas por falta de pago, Prorrogadas y Saldadas"></td>
+    <td style="width:99%;FONT-SIZE: 11px; COLOR: #000066; FONT-FAMILY: Arial" nowrap=""><b>Canceladas / Conversiones</b></td>
+    <td align="right"><img class="cBoton" onclick="fPanelMostrarOcultarDetalle(this)" src="./mas.gif" alt="Mostrar">&nbsp;</td>
+    </tr>
+    </tbody></table>
+        <div class="cBordeAzul cDivWindow" name="divCobranzaCanceladasConversiones" id="divCobranzaCanceladasConversiones" style="display: none;"><iframe src="./Pausa(4).html" frameborder="0" class="cIframe"></iframe></div>
+    </div>
+
+<br>
+
+    <span class="cSeccionTitulo" title="">Pólizas Flexibles <span class="cSup">1</span></span>
+    <div>
+    <table style="HEIGHT: 20px" cellspacing="0" cellpadding="0" border="0" background="./barra_001.gif" title="Pólizas que tuvieron alguna aportación durante el mes.">
+    <tbody><tr>
+    <td style="width:30px"><img alt="" src="./bandera_Verde.gif" class="cBandera" title="Pólizas que tuvieron alguna aportación durante el mes."></td>
+    <td style="width:99%;FONT-SIZE: 11px; COLOR: #000066; FONT-FAMILY: Arial" nowrap=""><b>Aportaciones del mes</b></td>
+    <td align="right"><img class="cBoton" onclick="fPanelMostrarOcultarDetalle(this)" src="./mas.gif" alt="Mostrar">&nbsp;</td>
+    </tr>
+    </tbody></table>
+        <div class="cBordeAzul cDivWindow" name="divPlanesFlexibles" id="divPlanesFlexibles" style="display: none;"><iframe src="./Pausa(5).html" frameborder="0" class="cIframe"></iframe></div>
+    </div>
+
+    <!--Cobranza-->
+
+<br>
+
+<!--Momentum-->
+    <span class="cSeccionTitulo" title="Nuevas oportunidades de venta">Oportunidades para Momentum <span class="cSup">3</span></span>
+    <div>
+    <table style="HEIGHT: 20px" cellspacing="0" cellpadding="0" border="0" background="./barra_001.gif" title="Planes dotales que concluirá su vigencia en los siguientes meses">
+    <tbody><tr>
+    <td style="width:30px"><img alt="" src="./bandera_Amarilla.gif" class="cBandera" title="Planes dotales que concluirá su vigencia en los siguientes meses"></td>
+    <td style="width:99%;FONT-SIZE: 11px; COLOR: #000066; FONT-FAMILY: Arial" nowrap=""><b>Próximos a vencer</b></td>
+    <td align="right"><img class="cBoton" onclick="fPanelMostrarOcultarDetalle(this)" src="./mas.gif" alt="Mostrar">&nbsp;</td>
+    </tr>
+    </tbody></table>
+        <div class="cBordeAzul cDivWindow" name="divMomentumProximosVencer" id="divMomentumProximosVencer" style="display: none;"><iframe src="./Pausa(6).html" frameborder="0" class="cIframe"></iframe></div>
+    </div>
+<div class="cBrMedio">&nbsp;</div>
+    <div>
+    <table style="HEIGHT: 20px" cellspacing="0" cellpadding="0" border="0" background="./barra_001.gif" title="Planes dótales que concluyó su vigencia.">
+    <tbody><tr>
+    <td style="width:30px"><img alt="" src="./bandera_Amarilla.gif" class="cBandera" title="Planes dótales que concluyó su vigencia."></td>
+    <td style="width:99%;FONT-SIZE: 11px; COLOR: #000066; FONT-FAMILY: Arial" nowrap=""><b>Vencidos</b></td>
+    <td align="right"><img class="cBoton" onclick="fPanelMostrarOcultarDetalle(this)" src="./mas.gif" alt="Mostrar">&nbsp;</td>
+    </tr>
+    </tbody></table>
+        <div class="cBordeAzul cDivWindow" name="divMomentumVencidos" id="divMomentumVencidos" style="display: none;"><iframe src="./Pausa(7).html" frameborder="0" class="cIframe"></iframe></div>
+    </div>
+
+<br>
+
+    <!--Emisión inicial-->
+    <span class="cSeccionTitulo" title="">Emisión inicial <span class="cSup">1</span></span>
+
+    <div>
+    <table style="HEIGHT: 20px" cellspacing="0" cellpadding="0" border="0" background="./barra_001.gif" title="Tramites en proceso de emisión de nuevas pólizas.">
+    <tbody><tr>
+    <td style="width:30px"><img alt="" src="./bandera_Verde.gif" class="cBandera" title="Tramites en proceso de emisión de nuevas pólizas."></td>
+    <td style="width:99%;FONT-SIZE: 11px; COLOR: #000066; FONT-FAMILY: Arial" nowrap=""><b>Trámites de emisión inicial </b></td>
+    <td align="right"><img class="cBoton" onclick="fPanelMostrarOcultarDetalle(this)" src="./mas.gif" alt="Mostrar">&nbsp;</td>
+    </tr>
+    </tbody></table>
+        <div class="cBordeAzul cDivWindow" name="divEmisionInicial" id="divEmisionInicial" style="display: none;"><iframe src="./Pausa(8).html" id="ifEmisionInicial" frameborder="0" class="cIframe"></iframe></div>
+    </div>
+    <!--Emisión inicial-->
+
+    <br>
+<script type="text/javascript">
+function fGlosarioEstatus()
+{
+    oWindow = window.open("Images/GLOSARIO BANDERAS TI.pdf", "oWindow","location=0,status=0,scrollbars=0,width=863,height=648");
+}
+</script>    
+<div onclick="" style="text-align:right"><a href="javascript:fGlosarioEstatus()">Glosario Estatus</a></div>  
+    
+    <span class="cSeccionTitulo" title="">Trámites <span class="cSup">1</span></span>
+    <div>
+    <table style="HEIGHT: 20px" cellspacing="0" cellpadding="0" border="0" background="./barra_001.gif" title="Detalle trámites ingresados a través de las oficinas de Seguros Monterrey New York Life">
+    <tbody><tr>
+    <td style="width:30px"><img alt="" src="./bandera_Verde.gif" class="cBandera" title="Detalle trámites ingresados a través de las oficinas de Seguros Monterrey New York Life"></td>
+    <td style="width:99%;FONT-SIZE: 11px; COLOR: #000066; FONT-FAMILY: Arial" nowrap=""><b>Ventanilla</b></td>
+    <td align="right"><img class="cBoton" onclick="fPanelMostrarOcultarDetalle(this)" src="./mas.gif" alt="Mostrar">&nbsp;</td>
+    </tr>
+    </tbody></table>
+        <div class="cBordeAzul cDivWindow" name="divTramitesVentanilla" id="divTramitesVentanilla" style="display: none;"><iframe src="./Pausa(9).html" id="ifTramitesVentanilla" frameborder="0" class="cIframe"></iframe></div>
+    </div>
+<div class="cBrMedio">&nbsp;</div>
+    <div>
+    <table style="HEIGHT: 20px" cellspacing="0" cellpadding="0" border="0" background="./barra_001.gif" title="Detalle trámites ingresados desde el portal de clientes o portal de asesores">
+    <tbody><tr>
+    <td style="width:30px"><img alt="" src="./bandera_Verde.gif" class="cBandera" title="Detalle trámites ingresados desde el portal de clientes o portal de asesores"></td>
+    <td style="width:99%;FONT-SIZE: 11px; COLOR: #000066; FONT-FAMILY: Arial" nowrap=""><b>Electrónicos</b></td>
+    <td align="right"><img class="cBoton" onclick="fPanelMostrarOcultarDetalle(this)" src="./mas.gif" alt="Mostrar">&nbsp;</td>
+    </tr>
+    </tbody></table>
+        <div class="cBordeAzul cDivWindow" name="divTramitesElectronicos" id="divTramitesElectronicos" style="display: none;"><iframe src="./Pausa(10).html" id="ifTramitesElectronicos" frameborder="0" class="cIframe"></iframe></div>
+    </div>
+
+
+
+<div class="cBrMedio">&nbsp;</div>
+
+<div>&nbsp;</div>
+
+
+
+</td> 
+
+
+<td width="20px"></td> 
+<td width="*%" valign="top">
+
+<br>
+
+    <div>
+    <table style="HEIGHT: 20px" cellspacing="0" cellpadding="0" border="0" background="./barra_001.gif" title="">
+    <tbody><tr>
+    <td style="width:25px" nowrap=""><img alt="" src="./p1.jpg" title=""></td>
+    <td style="width:99%;FONT-SIZE: 11px; COLOR: #000066; FONT-FAMILY: Arial" nowrap=""><b>Datos generales <span class="cSup">2</span></b></td>
+    <td align="right"><img class="cBoton" onclick="fPanelMostrarOcultarDetalle(this)" src="./menos.gif" alt="Ocultar">&nbsp;</td>
+    </tr>
+    </tbody></table>
+        <div class="cBordeAzul cDivWindow" style="height:150px;" name="divDatosGenerales" id="divDatosGenerales"><iframe src="./AgenDatosGenerales.html" id="Iframe1" style="height:150px" frameborder="0" class="cIframe"></iframe></div>
+    </div>
+
+<div class="cBrMedio">&nbsp;</div>
+
+    
+
+
+<div class="cBrMedio">&nbsp;</div>
+
+    <div>
+    <table style="HEIGHT: 20px" cellspacing="0" cellpadding="0" border="0" background="./barra_001.gif" title="Pólizas inscritas al programa de Asistente Virtual">
+    <tbody><tr>
+    <td style="width:30px"><img alt="" src="./bandera_Verde.gif" class="cBandera" title="Pólizas inscritas al programa de Asistente Virtual"></td>
+    <td style="width:99%;FONT-SIZE: 11px; COLOR: #000066; FONT-FAMILY: Arial" nowrap=""><b>Asistente virtual <span class="cSup">1</span></b></td>
+    <td align="right"><img class="cBoton" onclick="fPanelMostrarOcultarDetalle(this)" src="./menos.gif" alt="Ocultar">&nbsp;</td>
+    </tr>
+    </tbody></table>
+        <div class="cBordeAzul cDivWindow" style="height:80px;" id="divAsistenteVirtual" name="divAsistenteVirtual"><iframe src="./AgenAsistenteVirtual.html" id="ifAsistenteVirtual" frameborder="0" class="cIframe"></iframe></div>
+    </div>
+
+<div class="cBrMedio">&nbsp;</div>
+
+    <div>
+    <table style="HEIGHT: 20px" cellspacing="0" cellpadding="0" border="0" background="./barra_001.gif" title="Precios de título vigentes para cada Fondo Realiza">
+    <tbody><tr>
+    <td style="width:30px"><img alt="" src="./BilleteVerde.gif" class="cBandera" title="Precios de título vigentes para cada Fondo Realiza"></td>
+    <td style="width:99%;FONT-SIZE: 11px; COLOR: #000066; FONT-FAMILY: Arial" nowrap=""><b>Precios de títulos Realiza <span class="cSup">2</span></b></td>
+    <td align="right"><img class="cBoton" onclick="fPanelMostrarOcultarDetalle(this)" src="./menos.gif" alt="Ocultar">&nbsp;</td>
+    </tr>
+    </tbody></table>
+        <div class="cBordeAzul cDivWindow" style="height:150px;" name="divPreciosRealiza" id="divPreciosRealiza"><iframe src="./AgenPreciosTituloRealiza.html" id="ifPreciosRealiza" style="height:150px" frameborder="0" class="cIframe"></iframe></div>
+    </div>
+
+<div class="cBrMedio">&nbsp;</div>
+
+    <div>
+    <table style="HEIGHT: 20px" cellspacing="0" cellpadding="0" border="0" background="./barra_001.gif" title="Tipo de cambio vigente del día">
+    <tbody><tr>
+    <td style="width:30px"><img alt="" src="./BilleteVerde.gif" class="cBandera" title="Tipo de cambio vigente del día"></td>
+    <td style="width:99%;FONT-SIZE: 11px; COLOR: #000066; FONT-FAMILY: Arial" nowrap=""><b>Tipo de cambio 31 de marzo de 2022</b></td>
+    <td align="right"><img class="cBoton" onclick="fPanelMostrarOcultarDetalle(this)" src="./menos.gif" alt="Ocultar">&nbsp;</td>
+    </tr>
+    </tbody></table>
+        <div class="cBordeAzul cDivWindow" style="height:60px;" name="divPreciosTipoCambio" id="divPreciosTipoCambio"><iframe src="./TipoCambio.html" scroll="no" style="height:60px;" id="ifPreciosTipoCambio" frameborder="0" class="cIframe"></iframe></div>
+    </div>
+
+<div class="cBrMedio">&nbsp;</div>
+
+    <div>
+    <table style="HEIGHT: 20px" cellspacing="0" cellpadding="0" border="0" background="./barra_001.gif" title="Tasa garantizada vigente para cada AVE">
+    <tbody><tr>
+    <td style="width:30px"><img alt="" src="./BilleteVerde.gif" class="cBandera" title="Tasa garantizada vigente para cada AVE"></td>
+    <td style="width:99%;FONT-SIZE: 11px; COLOR: #000066; FONT-FAMILY: Arial" nowrap=""><b>Tasa garantizada AVE <span class="cSup">3</span></b></td>
+    <td align="right"><img class="cBoton" onclick="fPanelMostrarOcultarDetalle(this)" src="./menos.gif" alt="Ocultar">&nbsp;</td>
+    </tr>
+    </tbody></table>
+        <div class="cBordeAzul cDivWindow" style="height:80px;" name="divTasaGarantizadaAVE" id="divTasaGarantizadaAVE"><iframe src="./TasaGarantizadaAVE.html" id="ifTasaGarantizadaAVE" style="height:80px" frameborder="0" class="cIframe"></iframe></div>
+    </div>
+
+</td> 
+
+<td width="20px"></td>
+</tr>
+
+
+
+
+<tr>
+<td height="*%"> 
+&nbsp;
+</td> 
+</tr>
+
+</tbody></table>
+
+</div> 
+
+<script type="text/javascript">
+
+function window_onload()
+{
+    
+    
+    
+    PanelCargar(obj('divAsistenteVirtual')                         ,"AgenAsistenteVirtual.aspx","Pólizas inscritas al programa de Asistente Virtual")
+    PanelCargar(obj('divDatosGenerales')                           ,"AgenDatosGenerales.aspx","")
+    
+
+    PanelPreCargar(obj('divCobranzaRechazoBancarioCargoAutomatico')   ,"AgenCobranzaRechazoBancarioCargoAutomatico.aspx","Asesores con pólizas en cargo automático en las que no fue posible procesar el pago")
+    PanelPreCargar(obj('divCobranzaMes')                              ,"AgenCobranzaMes.aspx","Pólizas que tienen recibos pendientes de pago en este mes")
+    PanelPreCargar(obj('divCobranzaPagadasConPrestamo')               ,"AgenCobranzaPagadasConPrestamo.aspx","Pólizas que tienen saldo en préstamo automático")
+    PanelPreCargar(obj('divCobranzaPagadas')                          ,"AgenCobranzaPagadas.aspx","Pólizas que tienen recibo pagado durante el mes")
+    PanelPreCargar(obj('divPlanesFlexibles')                          ,"AgenCobranzaFlexibles.aspx","Pólizas que tuvieron alguna aportación durante el mes.")
+    PanelPreCargar(obj('divCobranzaCanceladasConversiones')           ,"AgenCobranzaCanceladasConversiones.aspx","Pólizas canceladas por falta de pago, Prorrogadas y Saldadas")
+    PanelPreCargar(obj('divMomentumProximosVencer')                   ,"AgenMomentumProximosVencer.aspx","Planes dotales que concluirá su vigencia en los siguientes meses")
+    PanelPreCargar(obj('divMomentumVencidos')                         ,"AgenMomentumVencidos.aspx","Planes dótales que concluyó su vigencia.")
+    PanelPreCargar(obj('divTramitesVentanilla')                       ,"AgenTramites.aspx","Detalle trámites ingresados a través de las oficinas de Seguros Monterrey New York Life")
+    PanelPreCargar(obj('divTramitesElectronicos')                     ,"AgenTramitesElectronicos.aspx","Detalle trámites ingresados desde el portal de clientes o portal de asesores")
+    PanelPreCargar(obj('divEmisionInicial')                           ,"AgenEmisionInicial.aspx","Tramites en proceso de emisión de nuevas pólizas.")
+
+    PanelCargar(obj('divPreciosRealiza')                           ,"AgenPreciosTituloRealiza.aspx","Precios de título vigentes para cada Fondo Realiza")
+    PanelCargar(obj('divPreciosTipoCambio')                        ,"TipoCambio.aspx","Tipo de cambio vigente del día")
+    PanelCargar(obj('divTasaGarantizadaAVE')                       ,"TasaGarantizadaAVE.aspx","Tasa garantizada vigente para cada AVE")
+
+    obj('DivConsulta').style.height = document.documentElement.scrollHeight -300;
+    
+    obj('DivConsulta').style.display = "none"
+//    document.body.onclick = AyudaOcultar;
+}
+
+window.onload = window_onload;
+
+function fReporte(Tipo)
+{
+    if (Tipo == "EstadoCuenta")
+    {
+        fNavegar("../Reportes/EdoCuenta/Asesor/EdoCtaAsesor2.aspx")
+    }
+    else
+    {
+        IframeReporte.window.location.replace("PromReportePlanesFlexibles.aspx");
+    }
+}
+
+</script>
+</form>
+
+
+
+</body></html>

@@ -1,0 +1,336 @@
+BODY
+{
+    FONT-SIZE: small;
+    FONT: messagebox
+}
+DIV
+{
+    FONT-SIZE: small;
+    FONT: messagebox;
+    CURSOR: default
+}
+INPUT
+{
+    FONT-SIZE: small;
+    FONT: messagebox
+}
+TEXTAREA
+{
+    FONT-SIZE: small;
+    FONT: messagebox
+}
+TD
+{
+    FONT-SIZE: small;
+    FONT: messagebox;
+    CURSOR: default
+}
+SELECT
+{
+    BORDER-RIGHT: #543229 1px solid;
+    BORDER-TOP: #543229 1px solid;
+    FONT-SIZE: small;
+    FONT: messagebox;
+    BORDER-LEFT: #543229 1px solid;
+    CURSOR: hand;
+    BORDER-BOTTOM: #543229 1px solid
+}
+.cSelecDiv
+{
+    OVERFLOW: hidden;
+    WIDTH: 15px;
+    HEIGHT: 18px
+}
+.cSmall
+{
+    FONT-SIZE: 7px;
+    FONT: messagebox
+}
+BUTTON
+{
+    BORDER-RIGHT: 1px solid;
+    BACKGROUND-POSITION: 0px -2px;
+    BORDER-TOP: 1px solid;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 11px;
+    BACKGROUND-IMAGE: url(Images/BarraSeccion3.bmp);
+    BORDER-LEFT: 1px solid;
+    WIDTH: 70px;
+    CURSOR: hand;
+    BORDER-BOTTOM: 1px solid;
+    BACKGROUND-REPEAT: repeat-x;
+    HEIGHT: 25px
+}
+.cHiden
+{
+    DISPLAY: none
+}
+.cSelect
+{
+    MAX-WIDTH: 400px;
+    OVERFLOW: hidden;
+    CURSOR: hand;
+    MAX-HEIGHT: 25px;
+    TEXT-INDENT: 3px;
+    WHITE-SPACE: nowrap
+}
+.cCombo
+{
+    FONT-SIZE: 9px
+}
+.cBordeWin
+{
+    FILTER: progid:DXImageTransform.Microsoft.Glow(color=#000000,strength=5)
+}
+.cBordeWinSombra
+{
+    FILTER: progid:DXImageTransform.Microsoft.Shadow(direction=135,color=#000000,strength=8)
+}
+.cBordeWinSombra2
+{
+    BORDER-TOP: #ffffff 1px solid;
+    FILTER: progid:DXImageTransform.Microsoft.Shadow(direction=135,color=black,strength=2);
+    BORDER-LEFT: #ffffff 1px solid
+}
+A
+{
+    FONT-WEIGHT: normal;
+    CURSOR: hand;
+    COLOR: black;
+    TEXT-DECORATION: none
+}
+.cTitulo
+{
+    BORDER-RIGHT: 2px groove;
+    BORDER-TOP: 1px outset;
+    PADDING-LEFT: 8px;
+    FONT-WEIGHT: normal;
+    BACKGROUND-IMAGE: url(Images/BarraSeccion2.bmp);
+    BORDER-LEFT: 0px groove;
+    CURSOR: default;
+    BORDER-BOTTOM: 2px groove;
+    BACKGROUND-REPEAT: repeat-x;
+    HEIGHT: 24px;
+    TEXT-ALIGN: left
+}
+.cDetalle
+{
+    FONT-SIZE: small;
+    FONT: messagebox;
+    BACKGROUND-COLOR: #fafafb
+}
+.cLoginLabel
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 12px;
+    FONT-VARIANT: small-caps
+}
+.cLoginCampo
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 13px
+}
+.cModal
+{
+    POSITION: absolute
+}
+.cVentanaIzq
+{
+    BACKGROUND-IMAGE: url(Images/VentanaIzq.bmp);
+    BACKGROUND-REPEAT: repeat-y
+}
+.VentanaAba
+{
+    BACKGROUND-IMAGE: url(Images/VentanaAba.bmp);
+    BACKGROUND-REPEAT: repeat-x
+}
+.cBarraSeccion
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 13px;
+    BACKGROUND-IMAGE: url(Images/BarraSeccion.bmp);
+    FONT: messagebox;
+    COLOR: white;
+    TEXT-INDENT: 10px;
+    PADDING-TOP: 5px;
+    BACKGROUND-REPEAT: repeat-x;
+    HEIGHT: 25px
+}
+.cBarraSeccion2
+{
+    PADDING-LEFT: 10px;
+    FONT-SIZE: 12px;
+    BACKGROUND-IMAGE: url(Images/BarraSeccion2.bmp);
+    FONT: messagebox;
+    COLOR: black;
+    PADDING-TOP: 5px;
+    BACKGROUND-REPEAT: repeat-x;
+    HEIGHT: 19px
+}
+.ColorAzul
+{
+    BACKGROUND-COLOR: #083C97 /*#ddecfe #006BFF*/
+}
+.FondoA
+{
+    BACKGROUND-IMAGE: url(Images/FondoA.bmp);
+    BACKGROUND-REPEAT: repeat-x
+}
+.FrameA
+{
+    BACKGROUND-IMAGE: url(Images/FrameA.bmp);
+    BACKGROUND-REPEAT: repeat-x
+}
+.cDato
+{
+    BORDER-LEFT-COLOR: white;
+    BORDER-BOTTOM-COLOR: white;
+    WIDTH: 300px;
+    BORDER-TOP-STYLE: none;
+    BORDER-TOP-COLOR: white;
+    BORDER-RIGHT-STYLE: none;
+    BORDER-LEFT-STYLE: none;
+    HEIGHT: 18px;
+    BACKGROUND-COLOR: #fafafb;
+    BORDER-RIGHT-COLOR: white;
+    BORDER-BOTTOM-STYLE: none
+}
+.cFondoGriz
+{
+    BACKGROUND-COLOR: #fafafb
+}
+.opacidad1
+{
+    FILTER: alpha(opacity=50)
+}
+.opacidad2
+{
+    FILTER: alpha(opacity=100)
+}
+.cBordeGroove
+{
+    BORDER-RIGHT: 2px groove;
+    BORDER-TOP: 2px groove;
+    BORDER-LEFT: 2px groove;
+    BORDER-BOTTOM: 2px groove
+}
+.cBordeInset
+{
+    BORDER-RIGHT: 2px inset;
+    BORDER-TOP: 2px inset;
+    BORDER-LEFT: 2px inset;
+    BORDER-BOTTOM: 2px inset
+}
+.cBordeOutset
+{
+    BORDER-RIGHT: 2px outset;
+    BORDER-TOP: 2px outset;
+    BORDER-LEFT: 2px outset;
+    BORDER-BOTTOM: 2px outset
+}
+.cBordeRidge
+{
+    BORDER-RIGHT: 2px ridge;
+    BORDER-TOP: 2px ridge;
+    BORDER-LEFT: 2px ridge;
+    BORDER-BOTTOM: 2px ridge
+}
+.cBordeNone
+{
+    BORDER-TOP-STYLE: none;
+    BORDER-RIGHT-STYLE: none;
+    BORDER-LEFT-STYLE: none;
+    BORDER-BOTTOM-STYLE: none
+}
+.cBordeAzul
+{
+    BORDER-RIGHT: #002d96 1px solid;
+    BORDER-TOP: #002d96 1px solid;
+    BORDER-LEFT: #002d96 1px solid;
+    BORDER-BOTTOM: #002d96 1px solid
+}
+.cBordeBlanco
+{
+    BORDER-RIGHT: #ffffff 1px solid;
+    BORDER-TOP: #ffffff 1px solid;
+    BORDER-LEFT: #ffffff 1px solid;
+    BORDER-BOTTOM: #ffffff 1px solid
+}
+.cRegistroSeleccionado
+{
+    FILTER: alpha(opacity=50);
+    BACKGROUND-IMAGE: url(Images/BarraSeccion.bmp);
+    COLOR: highlighttext;
+    BACKGROUND-REPEAT: repeat-x;
+    HEIGHT: 16px;
+    BACKGROUND-COLOR: highlight
+}
+.cCmdBuscar
+{
+    HEIGHT: 30px
+}
+.cMenu
+{
+    BACKGROUND-POSITION: 0px 100px;
+    WIDTH: 170px;
+    CURSOR: hand;
+    BORDER-TOP-STYLE: none;
+    BORDER-RIGHT-STYLE: none;
+    BORDER-LEFT-STYLE: none;
+    HEIGHT: 37px;
+    BACKGROUND-COLOR: white;
+    TEXT-ALIGN: left;
+    BORDER-BOTTOM-STYLE: none
+}
+.cAccion
+{
+    WIDTH: 120px;
+    CURSOR: hand;
+    TEXT-INDENT: 3px;
+    HEIGHT: 24px;
+    TEXT-ALIGN: left
+}
+.cBarraTab
+{
+    PADDING-LEFT: 10px;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 13px;
+    BACKGROUND-IMAGE: url(Images/BarraTab.bmp);
+    FONT: messagebox;
+    VERTICAL-ALIGN: text-bottom;
+    COLOR: white;
+    TEXT-INDENT: 10px;
+    PADDING-TOP: 2px;
+    BACKGROUND-REPEAT: repeat-x;
+    HEIGHT: 27px
+}
+.gridContainer TABLE TH
+{
+    POSITION: relative;
+    ;
+    TOP: expression(this.scrollTop+0)
+}
+.gridContainer TABLE TBODY
+{
+    OVERFLOW: visible
+}
+.gridPage
+{
+    OVERFLOW: hidden;
+    POSITION: absolute;
+    ;
+    TOP: expression(this.scrollTop+29);
+    HEIGHT: 15px
+}
+
+
+
+
+
+/*---------------------------------------------------*/
+.cEsquina
+{
+	BACKGROUND-IMAGE: url(Images/Redondo2.gif); WIDTH: 21px; HEIGHT: 21px;
+}
+
+	

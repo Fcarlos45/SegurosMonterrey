@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0082)https://www.lineamonterrey.com.mx/AsesoresWeb/PanelControl/AgenDatosGenerales.aspx -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link type="text/css" rel="stylesheet" href="./Default.css">
+<style type="text/css">
+body
+{
+    scrollbar-3dlight-color:#000080;
+    scrollbar-arrow-color:blue;
+    scrollbar-base-color:#FFFFFF;
+    scrollbar-face-color:#FFFFFF;
+    scrollbar-highlight-color:#FFFFFF;
+    scrollbar-shadow-color:#FFFFFF;
+
+    scrollbar-darkshadow-color:#000080;
+}
+
+.cTitulo
+{
+    font-weight: bold; font-family: Arial;Cursor:default;background-color:#7B9EDE;text-align:center;
+}
+.cId
+{
+    cursor:hand;
+}
+TD
+{
+    cursor:hand;
+    text-indent: 5px;
+    font-family: Arial;
+    font-size:10px;
+}
+</style>
+    <title>
+	Panel
+</title></head>
+<body topmargin="2" style="background-color:#E7F3FF;">
+            
+<form name="aspnetForm" method="post" action="https://www.lineamonterrey.com.mx/AsesoresWeb/PanelControl/AgenDatosGenerales.aspx" id="aspnetForm">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTY4NTE1MDg3OGRkHrKfW2AgC2FC7ub3IUEL4OU/3pc=">
+</div>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="2924A0E1">
+</div>
+    
+<table border="0" width="100%">
+<tbody><tr>
+<td style="width:1px;"></td>
+<td>
+
+<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tbody><tr id="TRNombre" style="display:none"><td><img src="./PuntoAzul.JPG"></td><td width="30%">Nombre:     </td><td colspan="2">VALERIE CAROLINA SANTIAGO MOLINA</td></tr>
+<tr><td><img src="./PuntoAzul.JPG"></td><td width="30%">Correo-e:       </td><td width="90%">valeriesantiago.m@gmail.com</td></tr>
+<tr><td><img src="./PuntoAzul.JPG"></td><td>No. asesor:     </td><td>91395</td></tr>
+<tr><td><img src="./PuntoAzul.JPG"></td><td>Estatus:        </td><td>Activo</td></tr>
+
+<tr><td><img src="./PuntoAzul.JPG"></td><td>Vto. póliza RC: </td><td>27/07/2022</td></tr>
+<tr><td><img src="./PuntoAzul.JPG"></td><td>Vto. cédula:    </td><td>27/07/2023</td></tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<script language="javascript">
+    //alert(top.location.pathname)
+    if (top.location.pathname.toUpperCase() != "/ASESORESWEB/PANELCONTROL/PANELCONTROL.ASPX")
+    {
+        TRNombre.style.display='';
+    }
+</script>
+
+</form>
+
+<script>
+function ffalse()
+{
+   /*
+     var t = event.srcElement.tagName;
+    if (t == "INPUT" || t == "TEXTAREA")
+    {
+        return true;
+    }
+    */
+    if (event.ctrlKey)
+    {
+        return true;
+    }
+    return false;
+}
+document.body.oncontextmenu = ffalse;
+document.body.ondragstart = ffalse;
+document.body.onselectstart = ffalse;
+
+/*
+if(DetalleMostrar == '1')
+{
+    parent.fShow("../consultas/DetallePoliza.aspx")
+    //open("../consultas/DetallePoliza.aspx")
+} 
+*/
+function fDatosClick()
+{
+    var e = event.srcElement;
+    //alert(event.srcElement.parentElement.innerHTML)
+    for (var n=1; n<=10;n++)
+    {
+        if (e.tagName=="TR")
+        {
+            for (var m=0; m<e.cells.length;m++)
+            {
+                if (e.cells[m].className=="cId")
+                {
+                    var Id = e.cells[m].innerText
+                    parent.fConsultar(Tipo,Id)
+                    return;
+                }
+            }
+            break;
+        }
+        else
+        {
+            e = e.parentElement;
+        }
+    }
+}
+
+//Asigna el click
+if (typeof(EsEditable)=='undefined')
+{
+    var EsEditable = false;
+}
+
+if (EsEditable)
+{
+    var GridDatos = null
+    try{
+        GridDatos = ctl00_ContentPlaceHolder1_oGridDatos;
+    }
+    catch(err){}
+    
+    if(GridDatos != null)
+    {
+        GridDatos.onclick = fDatosClick
+        GridDatos.style.cursor ="hand";
+    }
+}
+
+
+</script>
+</body></html>
