@@ -1,0 +1,975 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0089)https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/DetallePoliza.aspx -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head id="ctl00_Head1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>... Seguros Monterrey New York Life ...</title><link href="./05_files/styles.css" rel="stylesheet" type="text/css">
+    
+
+<script src="./05_files/jquery.min.js.download"></script>
+<script language="javascript" type="text/javascript">
+
+    function OpenUrGMM(tramite) {
+        
+        var existe = false;
+        var idCheck = "0";
+        var table = document.getElementById("ctl00_ContentPlaceHolder1_tbCheck");
+        var tds = table.getElementsByTagName("input");
+        var matchingTds = [];
+        
+            for (var i = 0, len = tds.length, td, tdName; i < len; ++i) 
+            {
+                td = tds[i];
+                if (td.type.toLowerCase() == 'checkbox') 
+                {
+                    if ( td.checked == true) {
+                        existe = true;
+                         idCheck = td.name.substr(td.name.length - 36); // => "Tabs1"
+                    } 
+
+                }
+            }
+         
+        if (existe == true) {
+            //  alert(document.getElementById("ctl00_ContentPlaceHolder1_celUrl" + idCheck).value);
+            //  alert(idCheck);
+            urlclaims = document.getElementById("ctl00_ContentPlaceHolder1_celUrl" + idCheck).value + tramite;
+              window.open(urlclaims, target = '_blank');
+            
+        }
+         else { 
+          alert('No has seleccionado un Asegurado');
+        }
+      MuestraCargando('no');
+
+    }
+    function UncheckAll(e) {
+
+        var table = document.getElementById("ctl00_ContentPlaceHolder1_tbCheck");
+        var tds = table.getElementsByTagName("input");
+        var matchingTds = [];
+        if (e.checked) {
+            for (var i = 0, len = tds.length, td, tdName; i < len; ++i) {
+                td = tds[i];
+                if (td.type.toLowerCase() == 'checkbox') {
+                    if (td.name == e.name) {
+                        td.checked = false;
+                        td.checked = true;
+                    } else {
+                        td.checked = false;
+                    }
+ 
+                }
+            }
+        } 
+    }
+
+    $(function () {
+
+        $("a").on("click", function (e) {
+            //debugger;
+            var itm = $(this);
+            if (itm[0].innerText.includes("Reportes")) {
+                e.preventDefault();
+                //menuFuncNew(itm);
+                enPos = true;
+                Mobile(itm[0]);
+                return false;
+            }
+            else {
+                enPos = false;
+            }
+        });
+        $("a").on("touchend ", function (e) {
+            var itm = $(this);
+            if (itm[0].innerText.includes("Reportes")) {
+                e.preventDefault();
+                enPos = true;
+                Mobile(itm[0]);
+                return false;
+            }
+            else {
+                enPos = false;
+            }
+        });
+    });
+
+
+    var sp = '';
+    document.title = '... Seguros Monterrey New York Life ...';
+    window.status = " Seguros Monterrey New York Life";
+    //variable para redireccionar las peticiones a algunas funciones de esta página.
+    var servidor = 'www.lineamonterrey.com.mx';  //localhost; 129.170.132.26; www.lineamonterrey.com.mx
+
+
+    //Da movimiento a la barra de estado
+    function animaTitulo() {
+        var actual = window.status
+        window.status = actual.substr(1) + sp + actual.substring(0, 1);
+        sp = (actual.substring(0, 1) == ' ') ? " " : ""
+        setTimeout('animaTitulo()', 200);
+    }
+
+
+    //muestra u oculta la barra de "cargando pagina..."
+    function MuestraCargando(mostrar) {
+        if (mostrar == 'si') {
+            if (Contenedor.style.display != 'none') {
+                Cargando.style.display = '';
+                Contenedor.style.display = 'none';
+            }
+        }
+        else {
+            Cargando.style.display = 'none';
+            Contenedor.style.display = '';
+        }
+    }
+
+    function ArrancaMonitor() {
+        try {
+            var token = new Date().getTime();
+            var UltimaPeticionHidden = document.getElementById('ContenedorUltimaPeticionHidden').getElementsByTagName('input')[0];
+            UltimaPeticionHidden.value = token;
+            window.setTimeout('VerificaCiere(' + token + ', true)', 500);
+        } catch (e) {
+            console.log('error', e);
+        }
+        return true;
+    }
+    function getCookie(c_name) {
+        var c_value = document.cookie;
+        var c_start = c_value.indexOf(" " + c_name + "=");
+        if (c_start == -1) {
+            c_start = c_value.indexOf(c_name + "=");
+        }
+        if (c_start == -1) {
+            c_value = null;
+        }
+        else {
+            c_start = c_value.indexOf("=", c_start) + 1;
+            var c_end = c_value.indexOf(";", c_start);
+            if (c_end == -1) {
+                c_end = c_value.length;
+            }
+            c_value = unescape(c_value.substring(c_start, c_end));
+        }
+        return c_value;
+    }
+    function VerificaCiere(token) {
+        var cookieValue = getCookie('UltimaPeticionToken');
+        if (cookieValue == token) {
+            MuestraCargando('no');
+        } else {
+            if (Contenedor.style.display == 'none') {
+                window.setTimeout('VerificaCiere(' + token + ')', 500);
+            }
+        }
+    }
+
+    //Muestra mensaje "Cargando pagina..."
+    function window_onbeforeunload() {
+        MuestraCargando('si');
+    }
+    var menuFuncNew;
+    var menuHidennNew;
+    function window_onload() {
+        animaTitulo();
+        //Oculta mensaje "Cargando pagina..."
+        Cargando.style.display = 'none';
+        fnMobile();
+    }
+    var objTarjet;
+    var enPos = false;
+    var fnExpand;
+    function fnMobile() {
+
+        fnExpand = Menu_Expand;
+        //    menuFuncNew = Menu_HoverStatic;
+        //    Menu_HoverStatic = function(t){
+        //      //debugger;
+        //      if(t.innerText.includes("Reportes")){
+        //         objTarjet = t;
+        //         enPos = true;
+        //         menuFuncNew(t);
+        //         return false;
+        //      }
+        //      else{
+        //         menuFuncNew(t);
+        //         enPos = false;
+        //      }
+        //    };
+
+        menuHidennNew = Menu_HideItems;
+        Menu_HideItems = function (t2) {
+            if (enPos)
+                return true;
+            else
+                menuHidennNew(t2);
+        }
+    }
+    function Mobile(t) {
+        //alert("entra");
+        try {
+            fnExpand(t, 2, 0);
+        }
+        catch (error) {
+            alert(error);
+        }
+    }
+
+    function doSubmitOficinaVirtualDos(pTemplate) {
+
+        window.open(pTemplate, target = '_blank');
+
+    }
+
+    function doSubmitPreNetMinipool(pTemplate, pPerfil) {
+        /*
+        if (window.location.host.indexOf(servidor) > -1)
+        {
+        var cad = pTemplate.replace(/WebAsesores/gi, 'WebAsesoresMS');        
+        pTemplate = cad;
+        }
+        */
+        document.FormPreNetMinipool.txtTemplateN.value = pTemplate;
+        document.FormPreNetMinipool.txtPerfil.value = pPerfil;
+        document.FormPreNetMinipool.action = pTemplate;
+        window.open('', 'kakasession', 'scrollbars=yes,resizable=yes, status=yes, menu=yes');
+        document.FormPreNetMinipool.submit();
+        MuestraCargando('no');
+    }
+
+    function doSubmitPreNet(pTemplate) {
+        /*
+        if (window.location.host.indexOf(servidor) > -1)
+        {
+        var cad = pTemplate.replace(/WebAsesores/gi, 'WebAsesoresMS');        
+        pTemplate = cad;
+        }
+        */
+        document.FormPreNet.txtTemplateN.value = pTemplate;
+        document.FormPreNet.action = pTemplate;
+        window.open('', 'kakasession', 'scrollbars=yes,resizable=yes, status=yes, menu=yes');
+        document.FormPreNet.submit();
+        MuestraCargando('no');
+    }
+
+    function doSubmitAgentes(pTemplate) {
+
+        var str = pTemplate;
+        var n = str.indexOf("Reportesdeventas");
+        if (n  > -1) { 
+                 window.open(pTemplate, target = '_blank');
+             }
+        else {
+            document.FormaAgentes.action = pTemplate;
+            document.FormaAgentes.submit();
+        }
+
+    }
+
+    function doSubmitFunc(pTemplate, bandera) {
+        document.FormaAgentes.bandera.value = bandera;
+        document.FormaAgentes.action = pTemplate;
+        document.FormaAgentes.submit();
+    }
+
+    function OpenWindowOI(File, Select) {
+        var URL
+        URL = "/AsesoresWeb/Reportes/ShowFile.aspx?idReport=" + File + "&idTime=" + Select;
+        window.open(URL, '11223344', 'height=400,width=600,scrollbars=yes,resizable=yes');
+
+        MuestraCargando('no');
+    }
+
+    function IndCons(user) {
+        document.frmIndCons.txtUser = user;
+        document.frmIndCons.txtOption = "0";
+        document.frmIndCons.submit();
+        MuestraCargando('no');
+    }
+
+    function OpenReport(parametro, TypeRep, vRol) {
+        var URL = window.location.protocol + '//' + window.location.host + '/AgentSite/AdminReports2.asp?idParam=' + parametro + "&idReport=" + TypeRep + "&idRol=" + vRol;
+        window.open(URL, '11223344', 'height=400,width=600,scrollbars=yes,resizable=yes');
+        MuestraCargando('no');
+    }
+
+    function OpenReportEdoCta(parametro, TypeRep, TypeReporte2, vRol) {
+        var URL
+        URL = window.location.protocol + '//' + window.location.host + '/AgentSite/AdminReports2.asp?idParam=' + parametro + "&idReport=" + TypeReporte2 + "&idTypeReport=" + TypeRep + "&idRol=" + vRol;
+        window.open(URL, '11223344', 'height=400,width=600,scrollbars=yes,resizable=yes');
+        MuestraCargando('no');
+    }
+
+    /********************************************************************************************
+    Se modifica esta función para pasarle el parametro Rol. [NPMS.11-Abr-2013]
+    *********************************************************************************************/
+    function OpenReportNet(parametro, TypeRep, idTime, rolConsulta) {
+        var URL
+        URL = "/AsesoresWeb/Reportes/ShowFile.aspx?idParam=" + parametro + "&idReport=" + TypeRep + "&idTime=" + idTime;
+        if (rolConsulta != null)
+            URL = URL + "&rol=" + rolConsulta;
+        window.open(URL, '11223344', 'height=400,width=600,scrollbars=yes,resizable=yes');
+        MuestraCargando('no');
+    }
+
+
+    function doSubmitContenidos() {
+        window.location.href = "https://www.asesordeseguros.com.mx/Home.aspx";
+    }
+
+    function doSubmitContent(User, Name, Rol, UserId) {
+        var URL
+        URL = "http://ottawa.smnyl.com.mx/AsesoresWeb/principal.aspx";
+        alert(URL);
+        window.navigate(URL);
+        MuestraCargando('no');
+    }
+
+    function doSubmitReportesVtsAg() {
+        document.formaReportesAg.submit();
+        MuestraCargando('no');
+    }
+
+    function doSubmitReportesVtsPr() {
+        document.formaReportesPr.submit();
+        MuestraCargando('no');
+    }
+
+    function OpenReportECMini(parametro) {
+        frmParamECMini.idProm.value = parametro;
+        frmParamECMini.submit();
+    }
+    function OpenWindowNIP(vAgente) {
+        document.frmEnvio.action = window.location.protocol + '//' + window.location.host + '/AsesoresWeb/Servicios/NIP/NIP.aspx';
+
+        document.frmEnvio.txtAgente.value = vAgente;
+        document.frmEnvio.submit();
+    }		
+
+</script>
+    
+<style type="text/css">
+	.ctl00_mnuPrincipal_0 { background-color:white;visibility:hidden;display:none;position:absolute;left:0px;top:0px; }
+	.ctl00_mnuPrincipal_1 { font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;text-decoration:none; }
+	.ctl00_mnuPrincipal_2 { border-style:None;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;height:20px;width:100%; }
+	.ctl00_mnuPrincipal_3 { color:White; }
+	.ctl00_mnuPrincipal_4 { background-color:#0078C1;height:30px;padding:2px 5px 2px 5px; }
+	.ctl00_mnuPrincipal_5 { background-color:#0078C1; }
+	.ctl00_mnuPrincipal_6 { color:White;font-weight:normal; }
+	.ctl00_mnuPrincipal_7 { padding:2px 5px 2px 5px; }
+	.ctl00_mnuPrincipal_8 { background-color:#0078C1;width:180px; }
+	.ctl00_mnuPrincipal_9 { color:White;font-weight:bold; }
+	.ctl00_mnuPrincipal_10 { color:White;background-color:#0078C1;font-weight:bold; }
+	.ctl00_mnuPrincipal_11 { color:White;font-weight:bold; }
+	.ctl00_mnuPrincipal_12 { color:White;background-color:#336699;font-weight:bold; }
+
+</style></head>
+<body onbeforeunload="return window_onbeforeunload()" onload="return window_onload()">
+    <form action="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/DetallePoliza.aspx" method="post" name="FormPreNetMinipool" target="kakasession" id="Form11">
+        <input type="hidden" name="txtTemplateN">
+        <input type="hidden" name="txtPerfil">
+	    <input type="hidden" name="txtUser" value="0" id="Hidden50">		
+	    <input type="hidden" name="KASessionId" value="" id="Hidden51">
+    </form>
+    <form action="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/DetallePoliza.aspx" method="post" name="FormPreNet" target="kakasession" id="Form10">
+            <input type="hidden" name="txtTemplateN">
+		    <input type="hidden" name="txtUser" value="0" id="Hidden46">		
+		    <input type="hidden" name="KASessionId" value="" id="Hidden47">
+    </form>
+    <form action="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/DetallePoliza.aspx" method="post" name="FormaAgentes">
+            <input type="hidden" name="bandera">
+		    <input type="hidden" name="txtUser" value="0" id="Hidden3">		
+		    <input type="hidden" name="txtKASession" value="" id="Hidden4">
+    </form>
+    <form name="frmIndConservacion" action="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/AgentSite/SearchReport.asp" method="POST" target="11223344">										   
+            <input type="hidden" name="txtPath">
+            <input type="hidden" name="txtURL">
+            <input type="hidden" name="txtFile">	
+    </form>
+    <form name="frmIndCons" method="POST" action="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/DetallePoliza.aspx">
+            <input type="hidden" name="txtUser">
+            <input type="hidden" name="txtOption">	
+    </form>       
+    <form action="https://www.asesordeseguros.com.mx/portal/jsp/VAPSessionInit_1.jsp" method="post" name="formaContenidosBack">
+        <input type="hidden" name="txtUser" value="Kumma22"> 
+        <input type="hidden" name="txtUserId" value="91395"> 
+        <input type="hidden" name="txtRol" value="AsistenteSinIF"> 
+        <input type="hidden" name="txtName" value="">         
+    </form>
+    
+    <form action="https://www.asesordeseguros.com.mx/portal/jsp/VAPSessionInit_1.jsp" method="post" name="formaReportesAg">    
+        <input type="hidden" name="txtUser" value="Kumma22"> 
+        <input type="hidden" name="txtUserId" value="91395"> 
+        <input type="hidden" name="txtRol" value="AsistenteSinIF"> 
+        <input type="hidden" name="txtName" value=""> 
+        <input type="hidden" name="ReturnUrl" value=""> 
+    </form>
+    
+    <form action="https://www.asesordeseguros.com.mx/portal/jsp/VAPSessionInit_1.jsp" method="post" name="formaReportesPr">    
+        <input type="hidden" name="txtUser" value="Kumma22"> 
+        <input type="hidden" name="txtUserId" value="91395"> 
+        <input type="hidden" name="txtRol" value="AsistenteSinIF"> 
+        <input type="hidden" name="txtName" value=""> 
+        <input type="hidden" name="ReturnUrl" value=""> 
+    </form>    
+
+    <form name="frmEnvio" action="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/DetallePoliza.aspx" method="POST" target="NIP">
+        <input type="hidden" name="txtAgente" value="1">
+    </form>
+            
+  <form id="frmParamECMini" action="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/NvoEdoCtaMinipool2.aspx" method="POST">
+		<input id="Hidden1" type="hidden" name="idProm" value="">
+    </form>
+    <form name="aspnetForm" method="post" action="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/DetallePoliza.aspx" id="aspnetForm" onsubmit="return ArrancaMonitor();">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE3NTc2MjE4MjAPZBYCZg9kFgICAQ9kFgICAw9kFgYCAQ9kFgJmD2QWCgIBDw8WAh4EVGV4dAUeQmllbnZlbmlkbyB1c3VhcmlvIGFzaXN0ZW50ZTogZGQCAw8PFgIfAAULTm8uIDogOTEzOTVkZAIHDw8WAh8AZWRkAgsPDxYCHgdWaXNpYmxlaGRkAg8PPCsADQEMFCsABgUTMDowLDA6MSwwOjIsMDozLDA6NBQrAAIWBh4FVmFsdWUFBiMkMCMjMB8ABQlDb25zdWx0YXMeClNlbGVjdGFibGVoFCsABwUXMDowLDA6MSwwOjIsMDozLDA6NCwwOjUUKwACFgYfAgVeamF2YXNjcmlwdDpkb1N1Ym1pdEFnZW50ZXMoIi9Bc2Vzb3Jlc1dlYi9Db25zdWx0YXMvUG9saXphcy9Bc2Vzb3IvUG9saXphc0FnZW50ZS5hc3B4IikjJDEwNyMjMB8ABQdQb2xpemFzHghJbWFnZVVybAUSaW1hZ2VzL2J1bGxldDIuZ2lmZBQrAAIWBh8CBUFqYXZhc2NyaXB0OmRvU3VibWl0QWdlbnRlcygiL0FzZXNvcmVzV2ViL1ByaW5jaXBhbC5hc3B4IikjJDEwOCMjMB8ABRZSZWNpYm9zIC8gQXBvcnRhY2lvbmVzHwQFEmltYWdlcy9idWxsZXQyLmdpZhQrAAMFBzA6MCwwOjEUKwACFgYfAgVcamF2YXNjcmlwdDpkb1N1Ym1pdEFnZW50ZXMoIi9Bc2Vzb3Jlc1dlYi9Db25zdWx0YXMvUmVjaWJvcy9Bc2Vzb3IvUmVjaWJvc0FnRnguYXNweCIpIyQxMDkjIzAfAAUQUGxhbmVzIEZsZXhpYmxlcx8EBRJpbWFnZXMvYnVsbGV0Mi5naWZkFCsAAhYGHwIFWmphdmFzY3JpcHQ6ZG9TdWJtaXRBZ2VudGVzKCIvQXNlc29yZXNXZWIvQ29uc3VsdGFzL1JlY2lib3MvQXNlc29yL1JlY2lib3NBZy5hc3B4IikjJDExMCMjMB8ABRRQbGFuZXMgVHJhZGljaW9uYWxlcx8EBRJpbWFnZXMvYnVsbGV0Mi5naWZkFCsAAhYGHwIFX2phdmFzY3JpcHQ6ZG9TdWJtaXRBZ2VudGVzKCIvQXNlc29yZXNXZWIvQ29uc3VsdGFzL0NvbXByb2JhbnRlc1BhZ28vQWdGb2xpb0F1ZGl0LmFzcHgiKSMkMTExIyMwHwAFFENvbXByb2JhbnRlcyBkZSBQYWdvHwQFEmltYWdlcy9idWxsZXQyLmdpZmQUKwACFgYfAgVXamF2YXNjcmlwdDpkb1N1Ym1pdFByZU5ldE1pbmlwb29sKCIvQXNlc29yZXNXZWIvVHJhbWl0ZXMvUGVuZGllbnRlc0EuYXNweCIsIjEiKSMkMTEzIyMwHwAFCVRyw6FtaXRlcx8EBRJpbWFnZXMvYnVsbGV0Mi5naWZkFCsAAhYGHwIFY2phdmFzY3JpcHQ6ZG9TdWJtaXRBZ2VudGVzKCIvQXNlc29yZXNXZWIvQ29uc3VsdGFzL1ZlbmNpbWllbnRvc0RvdGFsZXMvVmVuY2ltaWVudG9zRC5hc3B4IikjJDExNCMjMB8ABRRWZW5jaW1pZW50b3MgRG90YWxlcx8EBRJpbWFnZXMvYnVsbGV0Mi5naWZkFCsAAhYGHwIFYWphdmFzY3JpcHQ6ZG9TdWJtaXRBZ2VudGVzKCIvQXNlc29yZXNXZWIvQ29uc3VsdGFzL1JlY2hhem9CYW5jYXJpby9Bc2Vzb3IvUmVjaGF6b3MuYXNweCIpIyQyMTAjIzAfAAUQUmVjaGF6byBCYW5jYXJpbx8EBRJpbWFnZXMvYnVsbGV0Mi5naWZkFCsAAhYGHwIFBiMkMSMjMB8ABQlTZXJ2aWNpb3MfA2gUKwAEBQswOjAsMDoxLDA6MhQrAAIWBh8CBV5qYXZhc2NyaXB0OmRvU3VibWl0QWdlbnRlcygiL0FzZXNvcmVzV2ViL1NlcnZpY2lvcy9BY3R1YWxpemFjaW9uRGF0b3MvQWdlbnRJbmZvLmFzcHgiKSMkMTE2IyMwHwAFF0FjdHVhbGl6YWNpw7NuIGRlIERhdG9zHwQFEmltYWdlcy9idWxsZXQyLmdpZmQUKwACFgYfAgVcamF2YXNjcmlwdDpkb1N1Ym1pdEFnZW50ZXMoIi9Bc2Vzb3Jlc1dlYi9TZXJ2aWNpb3MvQ2VudHJvQ29udGFjdG8vV2VsbGNvbWVhZG0uYXNweCIpIyQxMTcjIzAfAAUcQ3RvIGRlIGNvbnRhY3RvL0F0biBDbGllbnRlcx8EBRJpbWFnZXMvYnVsbGV0Mi5naWZkFCsAAhYGHwIFXGphdmFzY3JpcHQ6ZG9TdWJtaXRQcmVOZXRNaW5pcG9vbCgiL0FzZXNvcmVzV2ViL1RyYW1pdGVzL0NvbnN1bHRhSW1hZ2VuZXMuYXNweCIsIjEiKSMkMTE4IyMwHwAFEUNvbnN1bHRhIEltYWdlbmVzHwQFEmltYWdlcy9idWxsZXQyLmdpZmQUKwACFgYfAgUGIyQyIyMwHwAFCFJlcG9ydGVzHwNoFCsAAwUHMDowLDA6MRQrAAIWBh8CBV9qYXZhc2NyaXB0OmRvU3VibWl0QWdlbnRlcygiL0FzZXNvcmVzV2ViL1JlcG9ydGVzL0ZhY3R1cmFzL0FzZXNvci9GYWN0dXJhc0FzZXNvci5hc3B4IikjJDExOSMjMB8ABQhGYWN0dXJhcx8EBRJpbWFnZXMvYnVsbGV0Mi5naWZkFCsAAhYGHwIFZGphdmFzY3JpcHQ6ZG9TdWJtaXRBZ2VudGVzKCIvQXNlc29yZXNXZWIvUmVwb3J0ZXMvTm90YXNDcmVkaXRvL0FzZXNvci9Ob3Rhc0NyZWRBc2Vzb3IuYXNweCIpIyQxMjAjIzAfAAURTm90YXMgZGUgQ3LDqWRpdG8fBAUSaW1hZ2VzL2J1bGxldDIuZ2lmZBQrAAIWBh8CBQYjJDMjIzAfAAUMSGVycmFtaWVudGFzHwNoZBQrAAIWBB8CBSVqYXZhc2NyaXB0OmRvU3VibWl0Q29udGVuaWRvcygpIyQ0IyMwHwAFFEluZm9ybWFjacOzbiBHZW5lcmFsZGQCAg9kFgJmD2QWAgIBD2QWOAIBDw8WAh8ABQxWSTAwMDI1OTg2NzJkZAIDDw8WAh8ABQ9WSURBIElORElWSURVQUxkZAIFDw8WAh8ABQ5JTUFHSU5BIFNFUiA2NWRkAgcPDxYCHwAFCEVuIFZpZ29yZGQCCQ8PFgIfAAUKMTAwLDAwMC4wMGRkAgsPDxYCHwAFA1VESWRkAg0PDxYCHwBkZGQCDw8PFgIfAAUKMjkvMDQvMjAyMWRkAhEPDxYCHwAFBUFOVUFMZGQCEw8PFgIfAAUcQ0FSR08gQVVUT01BVElDTyBBIFRBUkogQ1JFRGRkAhUPDxYCHwFnZBYGAgEPDxYCHwAFBlNFUkZJTmRkAgMPDxYCHwAFEDU0NzAxNSoqKioqKjY5OTZkZAIFDw8WAh8ABQE1ZGQCFw9kFgoCAQ8PFgIfAGRkZAIDDw8WAh8AZGRkAgUPDxYCHwBkZGQCBw8PFgIfAGRkZAIJDw8WAh8AZGRkAhkPZBYGAgEPDxYCHwAFAjY1ZGQCAw8PFgIfAAUIMywwOTguMzNkZAIFDw8WAh8ABQJOb2RkAhsPZBYCAgEPDxYCHwAFCDMsMDk4LjMzZGQCHQ8PFgIfAAUmVkFMRVJJRSBDQVJPTElOQSBTQU5USUFHTyBNT0xJTkEgOTEzOTVkZAIfDw8WAh8ABRt2YWxlcmllc2FudGlhZ28ubUBnbWFpbC5jb21kZAIhDw8WAh8AZWRkAiMPDxYCHwAFDFZJMDAwMjU5ODY3MmRkAisPDxYCHwAFHUFOQVhBR09SQVMgTsKwIDMzIERFUFRPLiAxMDMuZGQCLQ8PFgIfAAUQUElFREFEIE5BUlZBUlRFLmRkAi8PDxYCHwAFDUJFTklUTyBKVUFSRVpkZAIxDw8WAh8ABRBDSVVEQUQgREUgTUVYSUNPZGQCMw8PFgIfAAUFMDMwMDBkZAI1Dw8WAh8ABQZNRVhJQ09kZAI3Dw8WAh8ABRdqYXZpZXJtYXJjb3NhQGdtYWlsLmNvbWRkAjkPDxYCHwBkZGQCOw8PFgIfAGRkZAI/Dw8WAh8ABRpIaXN0w7NyaWNvIGRlIEFwb3J0YWNpb25lc2RkAgQPZBYCZg9kFgJmD2QWAgIDD2QWAmYPZBYCAgEPDxYCHwAFBzEuNy44LjBkZBgBBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WAwUNY3RsMDAkaW1hTG9nbwUYY3RsMDAkTG9naW5TdGF0dXMxJGN0bDAxBRhjdGwwMCRMb2dpblN0YXR1czEkY3RsMDNLJ1iovvbF4Vy/zlcMv7BIva98CQ==">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="./05_files/WebResource.axd" type="text/javascript"></script>
+
+
+<script src="./05_files/WebResource(1).axd" type="text/javascript"></script>
+    <div style="display:none" id="ContenedorUltimaPeticionHidden">
+        <input type="hidden" name="ctl00$UltimaPeticionHidden" id="ctl00_UltimaPeticionHidden">
+        </div>
+    <div>
+        <table id="ctl00_tblMaster" border="0" cellpadding="0" cellspacing="0" style="width: 900px; height: 100%" align="center">
+	<tbody><tr>
+		<td height="1" style="text-align: left" valign="top">
+                    <table id="ctl00_tblEncabezado" style="width: 100%">
+			<tbody><tr>
+				<td style="width: 100">                                
+                                <input type="image" name="ctl00$imaLogo" id="ctl00_imaLogo" title="Regresa a la página principal" class="imagen" src="./05_files/logo_smnyl.gif" style="border-width:0px;">
+                                </td>
+				<td align="right">
+                                <img src="./05_files/header1.jpg" id="ctl00_Img3"></td>
+			</tr>
+		</tbody></table>
+		
+                </td>
+	</tr>
+	<tr>
+		<td valign="top" bgcolor="#0078c1">
+                 <div id="divMaster">
+                    <table style="width: 100%" height="30">
+                        <tbody><tr>
+                            <td colspan="2">
+                    <span id="ctl00_LbNombre" class="textobold" style="color:White;">Bienvenido usuario asistente: </span>
+                                &nbsp; &nbsp; &nbsp;&nbsp;
+                    <span id="ctl00_LbIdAgente" class="textobold" style="color:White;">No. : 91395</span></td>
+                            <td align="left" colspan="1" style="text-align: left">
+                                
+                                </td>
+                            <td colspan="1" style="text-align: right">
+                                &nbsp;
+                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+                                </td>
+                            <td colspan="1" style="text-align: right">
+                                &nbsp;<a id="ctl00_LoginStatus1" class="textobold" href="javascript:__doPostBack(&#39;ctl00$LoginStatus1$ctl00&#39;,&#39;&#39;)" style="color:White;text-decoration:none;">Salir</a>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                    <a href="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/DetallePoliza.aspx#ctl00_mnuPrincipal_SkipLink"><img alt="Skip Navigation Links" src="./05_files/WebResource(2).axd" width="0" height="0" style="border-width:0px;"></a><table id="ctl00_mnuPrincipal" class=".menuIE8 ctl00_mnuPrincipal_5 ctl00_mnuPrincipal_2" cellpadding="0" cellspacing="0" border="0">
+			<tbody><tr>
+				<td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln0"><table class="ctl00_mnuPrincipal_4" cellpadding="0" cellspacing="0" border="0" width="100%">
+					<tbody><tr>
+						<td style="white-space:nowrap;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_3" href="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/DetallePoliza.aspx#" style="cursor:text;">Consultas</a></td><td style="width:0;"><img src="./05_files/WebResource(3).axd" alt="Expand Consultas" style="border-style:none;vertical-align:middle;"></td>
+					</tr>
+				</tbody></table></td><td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln1"><table class="ctl00_mnuPrincipal_4" cellpadding="0" cellspacing="0" border="0" width="100%">
+					<tbody><tr>
+						<td style="white-space:nowrap;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_3" href="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/DetallePoliza.aspx#" style="cursor:text;">Servicios</a></td><td style="width:0;"><img src="./05_files/WebResource(3).axd" alt="Expand Servicios" style="border-style:none;vertical-align:middle;"></td>
+					</tr>
+				</tbody></table></td><td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln2"><table class="ctl00_mnuPrincipal_4" cellpadding="0" cellspacing="0" border="0" width="100%">
+					<tbody><tr>
+						<td style="white-space:nowrap;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_3" href="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/DetallePoliza.aspx#" style="cursor:text;">Reportes</a></td><td style="width:0;"><img src="./05_files/WebResource(3).axd" alt="Expand Reportes" style="border-style:none;vertical-align:middle;"></td>
+					</tr>
+				</tbody></table></td><td id="ctl00_mnuPrincipaln3"><table class="ctl00_mnuPrincipal_4" cellpadding="0" cellspacing="0" border="0" width="100%">
+					<tbody><tr>
+						<td style="white-space:nowrap;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_3">Herramientas</a></td>
+					</tr>
+				</tbody></table></td><td style="width:3px;"></td><td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln4"><table class="ctl00_mnuPrincipal_4" cellpadding="0" cellspacing="0" border="0" width="100%">
+					<tbody><tr>
+						<td style="white-space:nowrap;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_3" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;javascript:doSubmitContenidos()#$4##0&#39;)">Información General</a></td>
+					</tr>
+				</tbody></table></td>
+			</tr>
+		</tbody></table><div id="ctl00_mnuPrincipaln0Items" class="ctl00_mnuPrincipal_0 ctl00_mnuPrincipal_8">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tbody><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln5">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$0##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Consultas/Polizas/Asesor/PolizasAgente.aspx\&quot;)#$107##0&#39;)"><img src="./05_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Polizas</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln6">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$0##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Principal.aspx\&quot;)#$108##0&#39;)"><img src="./05_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Recibos / Aportaciones</a></td><td style="width:0;"><img src="./05_files/WebResource(3).axd" alt="Expand Recibos / Aportaciones" style="border-style:none;vertical-align:middle;"></td>
+						</tr>
+					</tbody></table></td>
+				</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln7">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$0##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Consultas/ComprobantesPago/AgFolioAudit.aspx\&quot;)#$111##0&#39;)"><img src="./05_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Comprobantes de Pago</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln8">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$0##0\\javascript:doSubmitPreNetMinipool(\&quot;/AsesoresWeb/Tramites/PendientesA.aspx\&quot;,\&quot;1\&quot;)#$113##0&#39;)"><img src="./05_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Trámites</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln9">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$0##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Consultas/VencimientosDotales/VencimientosD.aspx\&quot;)#$114##0&#39;)"><img src="./05_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Vencimientos Dotales</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln10">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$0##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Consultas/RechazoBancario/Asesor/Rechazos.aspx\&quot;)#$210##0&#39;)"><img src="./05_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Rechazo Bancario</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr>
+			</tbody></table><div class="ctl00_mnuPrincipal_7 ctl00_mnuPrincipal_0" id="ctl00_mnuPrincipaln0ItemsUp" onmouseover="PopOut_Up(this)" onmouseout="PopOut_Stop(this)" style="text-align:center;">
+				<img src="./05_files/WebResource(4).axd" alt="Scroll up">
+			</div><div class="ctl00_mnuPrincipal_7 ctl00_mnuPrincipal_0" id="ctl00_mnuPrincipaln0ItemsDn" onmouseover="PopOut_Down(this)" onmouseout="PopOut_Stop(this)" style="text-align:center;">
+				<img src="./05_files/WebResource(5).axd" alt="Scroll down">
+			</div>
+		</div><div id="ctl00_mnuPrincipaln6Items" class="ctl00_mnuPrincipal_0 ctl00_mnuPrincipal_8">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tbody><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln11">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$0##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Principal.aspx\&quot;)#$108##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Consultas/Recibos/Asesor/RecibosAgFx.aspx\&quot;)#$109##0&#39;)"><img src="./05_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Planes Flexibles</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln12">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$0##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Principal.aspx\&quot;)#$108##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Consultas/Recibos/Asesor/RecibosAg.aspx\&quot;)#$110##0&#39;)"><img src="./05_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Planes Tradicionales</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr>
+			</tbody></table><div class="ctl00_mnuPrincipal_7 ctl00_mnuPrincipal_0" id="ctl00_mnuPrincipaln6ItemsUp" onmouseover="PopOut_Up(this)" onmouseout="PopOut_Stop(this)" style="text-align:center;">
+				<img src="./05_files/WebResource(4).axd" alt="Scroll up">
+			</div><div class="ctl00_mnuPrincipal_7 ctl00_mnuPrincipal_0" id="ctl00_mnuPrincipaln6ItemsDn" onmouseover="PopOut_Down(this)" onmouseout="PopOut_Stop(this)" style="text-align:center;">
+				<img src="./05_files/WebResource(5).axd" alt="Scroll down">
+			</div>
+		</div><div id="ctl00_mnuPrincipaln1Items" class="ctl00_mnuPrincipal_0 ctl00_mnuPrincipal_8">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tbody><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln13">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$1##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Servicios/ActualizacionDatos/AgentInfo.aspx\&quot;)#$116##0&#39;)"><img src="./05_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Actualización de Datos</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln14">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$1##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Servicios/CentroContacto/Wellcomeadm.aspx\&quot;)#$117##0&#39;)"><img src="./05_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Cto de contacto/Atn Clientes</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln15">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$1##0\\javascript:doSubmitPreNetMinipool(\&quot;/AsesoresWeb/Tramites/ConsultaImagenes.aspx\&quot;,\&quot;1\&quot;)#$118##0&#39;)"><img src="./05_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Consulta Imagenes</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr>
+			</tbody></table><div class="ctl00_mnuPrincipal_7 ctl00_mnuPrincipal_0" id="ctl00_mnuPrincipaln1ItemsUp" onmouseover="PopOut_Up(this)" onmouseout="PopOut_Stop(this)" style="text-align:center;">
+				<img src="./05_files/WebResource(4).axd" alt="Scroll up">
+			</div><div class="ctl00_mnuPrincipal_7 ctl00_mnuPrincipal_0" id="ctl00_mnuPrincipaln1ItemsDn" onmouseover="PopOut_Down(this)" onmouseout="PopOut_Stop(this)" style="text-align:center;">
+				<img src="./05_files/WebResource(5).axd" alt="Scroll down">
+			</div>
+		</div><div id="ctl00_mnuPrincipaln2Items" class="ctl00_mnuPrincipal_0 ctl00_mnuPrincipal_8">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tbody><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln16">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$2##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Reportes/Facturas/Asesor/FacturasAsesor.aspx\&quot;)#$119##0&#39;)"><img src="./05_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Facturas</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln17">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$2##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Reportes/NotasCredito/Asesor/NotasCredAsesor.aspx\&quot;)#$120##0&#39;)"><img src="./05_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Notas de Crédito</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr>
+			</tbody></table><div class="ctl00_mnuPrincipal_7 ctl00_mnuPrincipal_0" id="ctl00_mnuPrincipaln2ItemsUp" onmouseover="PopOut_Up(this)" onmouseout="PopOut_Stop(this)" style="text-align:center;">
+				<img src="./05_files/WebResource(4).axd" alt="Scroll up">
+			</div><div class="ctl00_mnuPrincipal_7 ctl00_mnuPrincipal_0" id="ctl00_mnuPrincipaln2ItemsDn" onmouseover="PopOut_Down(this)" onmouseout="PopOut_Stop(this)" style="text-align:center;">
+				<img src="./05_files/WebResource(5).axd" alt="Scroll down">
+			</div>
+		</div><a id="ctl00_mnuPrincipal_SkipLink"></a>    
+                     </div>                  
+                </td>
+	</tr>
+	<tr>
+		<td align="left" valign="top" height="350">
+                 <div id="Contenedor">
+                        
+            <table width="100%" cellpadding="2" id="DetallePoliza">
+                <tbody><tr>
+                    <td colspan="8" class="subtituloazul" bgcolor="#A7A9AB">
+                        Consulta de datos generales de la Póliza: <span id="ctl00_ContentPlaceHolder1_LbPoliza">VI0002598672</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8">&nbsp;</td>
+                </tr>
+             </tbody></table>
+             <table width="100%" cellpadding="2" id="Table1" align="center">   
+                <tbody><tr>
+                    <td class="campoazul_textonegro" style="width: 10%">
+                        Tipo de seguro </td>
+                    <td class="textobold" style="width: 21%"> 
+                        <span id="ctl00_ContentPlaceHolder1_lbTSeguro">VIDA INDIVIDUAL</span></td>            
+                    <td style="width: 3%"></td>            
+                    <td class="campoazul_textonegro" style="width: 10%">Plan</td>
+                    <td class="textobold" style="width: 21%"> 
+                        <span id="ctl00_ContentPlaceHolder1_lbDescL">IMAGINA SER 65</span></td>            
+                    <td style="width: 3%"></td>
+                    <td class="campoazul_textonegro" style="width: 10%">Estatus</td>
+                    <td class="textobold" style="width: 21%"> &nbsp;<span id="ctl00_ContentPlaceHolder1_lbStatus">En Vigor</span></td>                                 
+                </tr>
+                <tr>
+                    <td class="campoazul_textonegro" style="width: 10%; height: 30px;">Suma Asegurada</td>
+                    <td class="textobold" style="width: 21%; height: 30px;"> 
+                        <span id="ctl00_ContentPlaceHolder1_lbSA">100,000.00</span></td>
+                    <td style="width: 3%; height: 30px;"></td>
+                    <td class="campoazul_textonegro" style="width: 10%; height: 30px;">Moneda</td>                
+                    <td class="textobold" style="width: 21%; height: 30px;"> 
+                        <span id="ctl00_ContentPlaceHolder1_lbMoneda">UDI</span></td>
+                    <td style="width: 3%; height: 30px;"></td>
+                    <td style="width: 10%; height: 30px;"></td>                
+                    <td class="textobold" style="width: 21%; height: 30px;"> &nbsp;</td>            
+                 </tr>        
+                 <tr>
+                    <td class="campoazul_textonegro" style="width: 10%">Fecha Emisión</td>
+                    <td class="textobold" style="width: 21%">
+                        <span id="ctl00_ContentPlaceHolder1_lbFInicio">29/04/2021</span></td>            
+                    <td style="width: 3%"></td>
+                    <td class="campoazul_textonegro" style="width: 10%">Forma de pago</td>
+                    <td class="textobold" style="width: 21%">
+                        <span id="ctl00_ContentPlaceHolder1_lbFPPoliza">ANUAL</span></td>            
+                    <td style="width: 3%"></td>
+                    <td style="width: 10%"></td>
+                    <td class="textobold" style="width: 21%">
+                        &nbsp;</td>            
+                 </tr>
+                 <tr>
+                    <td class="campoazul_textonegro" style="width: 10%">Medio de cobro</td>
+                    <td class="textobold" style="width: 21%">
+                        <span id="ctl00_ContentPlaceHolder1_lbMCobro">CARGO AUTOMATICO A TARJ CRED</span></td>                              
+                        <td style="width: 3%"></td>
+                 </tr>         
+             </tbody></table>
+            <div id="ctl00_ContentPlaceHolder1_InformacionBanco" style="width:100%;">
+			
+                <table width="90%" cellpadding="2" align="center">        
+                    <tbody><tr>
+                        <td class="campoazul_textonegro" style="width: 10%">
+                            Banco
+                        </td>                            
+                        <td class="textobold" style="width: 21%">
+                            <span id="ctl00_ContentPlaceHolder1_lbBanco">SERFIN</span>
+                        </td>            
+                        <td style="width: 3%"></td>    
+                                 <td class="campoazul_textonegro" style="width: 20%; height: 17px;">
+                            Número de token/Cuenta CLABE</td>
+							
+                        <td class="textobold" style="width: 21%; height: 17px;">
+                            <span id="ctl00_ContentPlaceHolder1_lbNoTarjeta">547015******6996</span>
+                        </td>            
+                        <td style="width: 3%; height: 17px;"></td>
+                        <td class="campoazul_textonegro" style="width: 10%; height: 17px;">
+                            Día de cobro
+                        </td>            
+                        <td class="textobold" style="width: 21%; height: 17px;">
+                            <span id="ctl00_ContentPlaceHolder1_lbDiaCobro">5</span>
+                        </td>             
+                    </tr>
+                </tbody></table>
+            
+		</div>
+             
+             
+            
+                        
+            
+             <table width="100%" cellpadding="2" id="DatosAgeProm" align="center">
+                 <tbody><tr>
+                    <td class="campoazul_textonegro" style="width: 10%">Agente</td>
+                    <td class="textobold" style="width: 21%">
+                        <span id="ctl00_ContentPlaceHolder1_lbNomNoAg">VALERIE CAROLINA SANTIAGO MOLINA 91395</span></td>            
+                    <td style="width: 3%"></td>
+                    <td class="campoazul_textonegro" style="width: 10%">E-mail</td>  
+                    <td class="textobold" style="width: 21%">
+                        <span id="ctl00_ContentPlaceHolder1_lbAgeMail">valeriesantiago.m@gmail.com</span></td>                                      
+                    <td style="width: 3%"></td>
+                    <td class="campoazul_textonegro" style="width: 10%">Teléfono</td>
+                    <td class="textobold" style="width: 21%"> 
+                        <span id="ctl00_ContentPlaceHolder1_lbAgeTelTrab"></span></td>                        
+                </tr>        
+		        <tr>
+			        <td colspan="10" style="width:50%; background-image: url(../../../images/linea.gif); background-position: 50% center;"><br></td>
+		        </tr>
+            </tbody></table>           
+            
+            <table width="100%" cellpadding="2" id="Asegurados" align="center">
+                 <tbody><tr>
+                    <td>
+                        <table width="100%">
+                            <tbody><tr>
+                                <td class="campoazul_textonegro" style="width: 20%">Contratante</td>
+                                <td class="textobold" style="width: 40%">
+                                    <span id="ctl00_ContentPlaceHolder1_lbNomCont">VI0002598672</span></td>                        
+                                <td class="textobold" style="width: 40%">
+                                    </td>                                        
+                            </tr>
+                        </tbody></table>                        
+                    </td>
+                </tr>        
+                 <tr>
+                    <td>
+                        <table width="100%">
+                            <tbody><tr>
+                                <td class="campoazul_textonegro" style="width: 20%">Asegurados</td>
+                                <td class="textobold" style="width: 40%">
+                                    <table id="ctl00_ContentPlaceHolder1_TbAsegs" border="0">
+			<tbody><tr class="textobold">
+				<td>*JAVIER MARCOS ANDRADE</td>
+			</tr>
+		</tbody></table>
+                                </td>                        
+                                <td class="campoazul_textonegro" style="width: 20%">Fecha de Nacimiento</td>
+                                <td class="textobold" style="width: 40%">
+                                    <table id="ctl00_ContentPlaceHolder1_TbBirth" border="0">
+			<tbody><tr class="textobold">
+				<td>09-04-1983</td>
+			</tr>
+		</tbody></table>
+                                </td>                                        
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>        
+                <tr>
+                    <td colspan="10" style="height: 23px" class="textobold">
+                        * Asegurado Principal</td>
+                </tr>     
+		        <tr>
+			        <td colspan="10" style="width:50%; background-image: url(../../../images/linea.gif); background-position: 50% center;"><br></td>
+		        </tr>
+            </tbody></table>    
+            
+            <table style="width: 100%" id="DomicilioPoliza" align="center">
+                <tbody><tr>
+                    <td colspan="4" class="tituloazul" style="height: 18px">Dirección de la póliza</td>
+                </tr>
+            </tbody></table>
+             <table width="100%" cellpadding="2" align="center">
+             <tbody><tr>
+                <td>
+                    <table width="100%" cellpadding="2">
+                         <tbody><tr>
+                            <td class="campoazul_textonegro" style="width: 20%">Calle y número</td>
+                            <td class="textobold" style="width: 80%">
+                                <span id="ctl00_ContentPlaceHolder1_lbCalle">ANAXAGORAS N° 33 DEPTO. 103.</span></td>
+                         </tr>
+                         <tr>
+                            <td class="campoazul_textonegro" style="width: 25%">Colonia</td>
+                            <td class="textobold" style="width: 75%">
+                                <span id="ctl00_ContentPlaceHolder1_lbCol">PIEDAD NARVARTE.</span></td>
+                         </tr>                 
+                         <tr>            
+                            <td class="campoazul_textonegro" style="width: 20%">Ciudad o Municipio</td>
+                            <td class="textobold" style="width: 80%">
+                                <span id="ctl00_ContentPlaceHolder1_lbCdMun">BENITO JUAREZ</span></td>
+                         </tr>
+                         <tr>
+                            <td class="campoazul_textonegro" style="width: 25%">Estado</td>
+                            <td class="textobold" style="width: 75%">
+                                <span id="ctl00_ContentPlaceHolder1_lbEdo">CIUDAD DE MEXICO</span></td>
+                         </tr>                 
+                         <tr>
+                            <td class="campoazul_textonegro" style="width: 25%">Código postal</td>
+                            <td class="textobold" style="width: 75%">
+                                <span id="ctl00_ContentPlaceHolder1_lbCP">03000</span></td>                 
+                        </tr>                  
+                    </tbody></table>
+                 </td>
+                 <td>
+                    <table width="100%" cellpadding="2" align="center">
+                         <tbody><tr>            
+                            <td class="campoazul_textonegro" style="width: 20%">País</td>
+                            <td class="textobold" style="width: 80%">
+                                <span id="ctl00_ContentPlaceHolder1_lbPais">MEXICO</span></td>
+                         </tr>
+                         <tr>            
+                            <td class="campoazul_textonegro" style="width: 20%; height: 20px;">Correo electrónico</td>            
+                            <td class="textobold" style="width: 80%; height: 20px;">
+                                <span id="ctl00_ContentPlaceHolder1_lbPolMail">javiermarcosa@gmail.com</span></td>            
+                         </tr>                 
+                         <tr>            
+                            <td class="campoazul_textonegro" style="width: 20%">Teléfono particular</td>
+                            <td class="textobold" style="width: 80%">
+                                <span id="ctl00_ContentPlaceHolder1_lbTelPart"></span></td>
+                         </tr>
+                         <tr>
+                            <td class="campoazul_textonegro" style="width: 25%">Teléfono oficina</td>
+                            <td class="textobold" style="width: 75%">
+                                <span id="ctl00_ContentPlaceHolder1_lbTelTrab"></span></td>
+                         </tr>                                  
+                         <tr>
+                            <td style="width: 25%"></td>
+                            <td style="width: 75%"></td>                 
+                        </tr>                              
+                    </tbody></table>
+                 </td>
+                 </tr>
+                <tr>
+                    <td colspan="10" style="width:50%; background-image: url(../../../images/linea.gif); background-position: 50% center;"><br></td>
+                </tr>
+            </tbody></table>
+            <table width="100%" cellpadding="2" align="center">
+                <tbody><tr>
+                    <td>                     
+                        <input type="submit" name="ctl00$ContentPlaceHolder1$BtnCoberturas" value="Ver coberturas" id="ctl00_ContentPlaceHolder1_BtnCoberturas" class="boton" style="background-color:GhostWhite;width:103px;">
+                        <input type="submit" name="ctl00$ContentPlaceHolder1$Button2" value="Histórico de Aportaciones" id="ctl00_ContentPlaceHolder1_Button2" class="boton" style="background-color:GhostWhite;width:142px;">
+                        <input type="submit" name="ctl00$ContentPlaceHolder1$btnOpcionesTrFiscal" value="Opciones de Tratamiento Fiscal" id="ctl00_ContentPlaceHolder1_btnOpcionesTrFiscal" class="boton" style="background-color:GhostWhite;width:182px;">
+                        <input type="submit" name="ctl00$ContentPlaceHolder1$btnUltimosMovimientos" value="Últimos Movimientos" id="ctl00_ContentPlaceHolder1_btnUltimosMovimientos" class="boton" style="background-color:GhostWhite;width:142px;">
+                        
+
+                       <input type="submit" name="ctl00$ContentPlaceHolder1$btnDocumentos" value="Documentos" id="ctl00_ContentPlaceHolder1_btnDocumentos" class="boton" style="background-color:GhostWhite;width:100px;">
+                        </td>
+                    <td style="text-align: right; width: 100px;">
+                        <input type="submit" name="ctl00$ContentPlaceHolder1$btnRegresar" value="Regresar" id="ctl00_ContentPlaceHolder1_btnRegresar" class="boton"></td>
+                </tr>                           
+             </tbody></table>
+
+                    </div>
+                   <div id="Cargando" style="display: none;">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <table id="tblCargando" cellspacing="3" class="bordeazul" width="370" align="center">
+                        <tbody><tr>
+                            <td align="center" class="tablaCargando">
+                                <span id="ctl00_Label1">Cargando información...</span></td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <img src="./05_files/loading.gif" id="ctl00_imgCargando">
+                            </td>
+                        </tr>
+                    </tbody></table>
+                    </div>                    
+                </td>
+	</tr>
+	<tr>
+		<td align="left">
+                    <hr class="separadorAmarillo">
+                 </td>
+	</tr>
+	<tr>
+		<td colspan="1"><table id="ctl00_tblFooter" class="textonormal" cellpadding="0" cellspacing="0" width="100%">
+			<tbody><tr>
+				<td style="text-align: center" bgcolor="#cfd9ec">
+                                Centro de Atención: 01 800 288 0228, Asesor opción 2, Promotor opción 1.                                
+                            </td>
+			</tr>
+			<tr>
+				<td style="text-align: center" bgcolor="#f0f3fc">
+                                Comentarios: <a href="mailto:agentes@monterrey-newyorklife.com.mx" class="ligas">
+                                    agentes@monterrey-newyorklife.com.mx
+                                    <img src="./05_files/mail_icon.gif" id="ctl00_IMG2" border="0" style="width: 28px; height: 11px"></a>
+                            </td>
+			</tr>
+			<tr>
+				<td bgcolor="#f0f3fc" style="text-align: center">
+                            © Seguros Monterrey New York Life - todos los derechos reservados.</td>
+			</tr>
+			<tr>
+				<td bgcolor="#f0f3fc" style="text-align: center; padding:5px">
+                           Ver. <span id="ctl00_lblVersion">1.7.8.0</span>
+                        </td>
+			</tr>
+		</tbody></table>
+		
+                </td>
+	</tr>
+</tbody></table>
+
+        &nbsp;
+    </div>
+    
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="2F151DD0">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWGAKV9raeDwKg082dDwLpxfmVDALh8tHdBgLTxa7dCALL6POoBQKd45OoDwLRw4WGAQKM2LbIAwL4pt+ABgKbrpbfCQKw3MfRBwLgq7ylBAKfx9vrAgLVnauaBwLI1faRDAKJzrToBgKYh9zMAwLsh+a2DgKD4sljApWA5+YKAqWeyLEFAq3FmM0IAoDJyPIIpklTEFzt1Mws4FWwSO6cz9BxX+A=">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var ctl00_mnuPrincipal_Data = new Object();
+ctl00_mnuPrincipal_Data.disappearAfter = 500;
+ctl00_mnuPrincipal_Data.horizontalOffset = 2;
+ctl00_mnuPrincipal_Data.verticalOffset = 0;
+ctl00_mnuPrincipal_Data.hoverClass = 'ctl00_mnuPrincipal_12';
+ctl00_mnuPrincipal_Data.hoverHyperLinkClass = 'ctl00_mnuPrincipal_11';
+ctl00_mnuPrincipal_Data.staticHoverClass = 'ctl00_mnuPrincipal_10';
+ctl00_mnuPrincipal_Data.staticHoverHyperLinkClass = 'ctl00_mnuPrincipal_9';
+ctl00_mnuPrincipal_Data.iframeUrl = '/AsesoresWeb/WebResource.axd?d=owX5s5wRIXt3PvHHsf60EnISOahSrYvi7D0k3rWV9u_7S8rN1Ng0DJ5VLmYsc6OPY4PbTzFvCTVNc2YBKnmA3J67rBY1&t=635588408026805809';
+//]]>
+</script>
+</form>
+
+
+
+<script language="javascript">
+    if (window != top) {
+        document.getElementById("ctl00_tblEncabezado").style.display = "none"
+        document.getElementById("divMaster").style.display = "none"
+        document.getElementById("ctl00_tblFooter").style.display = "none"
+        try {
+            parent.window.DivConsulta.scrollIntoView(true)
+        }
+        catch (err) {
+
+        }
+    }
+</script>
+
+
+<script type="text/javascript">
+    Cargando.style.display = 'none';
+</script>
+
+</body></html>

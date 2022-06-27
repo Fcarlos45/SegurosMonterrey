@@ -1,0 +1,1149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0089)https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/PolizasAgente.aspx -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head id="ctl00_Head1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>... Seguros Monterrey New York Life ...</title><link href="./04_files/styles.css" rel="stylesheet" type="text/css">
+    
+
+<script src="./04_files/jquery.min.js.download"></script>
+<script language="javascript" type="text/javascript">
+
+    function OpenUrGMM(tramite) {
+        
+        var existe = false;
+        var idCheck = "0";
+        var table = document.getElementById("ctl00_ContentPlaceHolder1_tbCheck");
+        var tds = table.getElementsByTagName("input");
+        var matchingTds = [];
+        
+            for (var i = 0, len = tds.length, td, tdName; i < len; ++i) 
+            {
+                td = tds[i];
+                if (td.type.toLowerCase() == 'checkbox') 
+                {
+                    if ( td.checked == true) {
+                        existe = true;
+                         idCheck = td.name.substr(td.name.length - 36); // => "Tabs1"
+                    } 
+
+                }
+            }
+         
+        if (existe == true) {
+            //  alert(document.getElementById("ctl00_ContentPlaceHolder1_celUrl" + idCheck).value);
+            //  alert(idCheck);
+            urlclaims = document.getElementById("ctl00_ContentPlaceHolder1_celUrl" + idCheck).value + tramite;
+              window.open(urlclaims, target = '_blank');
+            
+        }
+         else { 
+          alert('No has seleccionado un Asegurado');
+        }
+      MuestraCargando('no');
+
+    }
+    function UncheckAll(e) {
+
+        var table = document.getElementById("ctl00_ContentPlaceHolder1_tbCheck");
+        var tds = table.getElementsByTagName("input");
+        var matchingTds = [];
+        if (e.checked) {
+            for (var i = 0, len = tds.length, td, tdName; i < len; ++i) {
+                td = tds[i];
+                if (td.type.toLowerCase() == 'checkbox') {
+                    if (td.name == e.name) {
+                        td.checked = false;
+                        td.checked = true;
+                    } else {
+                        td.checked = false;
+                    }
+ 
+                }
+            }
+        } 
+    }
+
+    $(function () {
+
+        $("a").on("click", function (e) {
+            //debugger;
+            var itm = $(this);
+            if (itm[0].innerText.includes("Reportes")) {
+                e.preventDefault();
+                //menuFuncNew(itm);
+                enPos = true;
+                Mobile(itm[0]);
+                return false;
+            }
+            else {
+                enPos = false;
+            }
+        });
+        $("a").on("touchend ", function (e) {
+            var itm = $(this);
+            if (itm[0].innerText.includes("Reportes")) {
+                e.preventDefault();
+                enPos = true;
+                Mobile(itm[0]);
+                return false;
+            }
+            else {
+                enPos = false;
+            }
+        });
+    });
+
+
+    var sp = '';
+    document.title = '... Seguros Monterrey New York Life ...';
+    window.status = " Seguros Monterrey New York Life";
+    //variable para redireccionar las peticiones a algunas funciones de esta página.
+    var servidor = 'www.lineamonterrey.com.mx';  //localhost; 129.170.132.26; www.lineamonterrey.com.mx
+
+
+    //Da movimiento a la barra de estado
+    function animaTitulo() {
+        var actual = window.status
+        window.status = actual.substr(1) + sp + actual.substring(0, 1);
+        sp = (actual.substring(0, 1) == ' ') ? " " : ""
+        setTimeout('animaTitulo()', 200);
+    }
+
+
+    //muestra u oculta la barra de "cargando pagina..."
+    function MuestraCargando(mostrar) {
+        if (mostrar == 'si') {
+            if (Contenedor.style.display != 'none') {
+                Cargando.style.display = '';
+                Contenedor.style.display = 'none';
+            }
+        }
+        else {
+            Cargando.style.display = 'none';
+            Contenedor.style.display = '';
+        }
+    }
+
+    function ArrancaMonitor() {
+        try {
+            var token = new Date().getTime();
+            var UltimaPeticionHidden = document.getElementById('ContenedorUltimaPeticionHidden').getElementsByTagName('input')[0];
+            UltimaPeticionHidden.value = token;
+            window.setTimeout('VerificaCiere(' + token + ', true)', 500);
+        } catch (e) {
+            console.log('error', e);
+        }
+        return true;
+    }
+    function getCookie(c_name) {
+        var c_value = document.cookie;
+        var c_start = c_value.indexOf(" " + c_name + "=");
+        if (c_start == -1) {
+            c_start = c_value.indexOf(c_name + "=");
+        }
+        if (c_start == -1) {
+            c_value = null;
+        }
+        else {
+            c_start = c_value.indexOf("=", c_start) + 1;
+            var c_end = c_value.indexOf(";", c_start);
+            if (c_end == -1) {
+                c_end = c_value.length;
+            }
+            c_value = unescape(c_value.substring(c_start, c_end));
+        }
+        return c_value;
+    }
+    function VerificaCiere(token) {
+        var cookieValue = getCookie('UltimaPeticionToken');
+        if (cookieValue == token) {
+            MuestraCargando('no');
+        } else {
+            if (Contenedor.style.display == 'none') {
+                window.setTimeout('VerificaCiere(' + token + ')', 500);
+            }
+        }
+    }
+
+    //Muestra mensaje "Cargando pagina..."
+    function window_onbeforeunload() {
+        MuestraCargando('si');
+    }
+    var menuFuncNew;
+    var menuHidennNew;
+    function window_onload() {
+        animaTitulo();
+        //Oculta mensaje "Cargando pagina..."
+        Cargando.style.display = 'none';
+        fnMobile();
+    }
+    var objTarjet;
+    var enPos = false;
+    var fnExpand;
+    function fnMobile() {
+
+        fnExpand = Menu_Expand;
+        //    menuFuncNew = Menu_HoverStatic;
+        //    Menu_HoverStatic = function(t){
+        //      //debugger;
+        //      if(t.innerText.includes("Reportes")){
+        //         objTarjet = t;
+        //         enPos = true;
+        //         menuFuncNew(t);
+        //         return false;
+        //      }
+        //      else{
+        //         menuFuncNew(t);
+        //         enPos = false;
+        //      }
+        //    };
+
+        menuHidennNew = Menu_HideItems;
+        Menu_HideItems = function (t2) {
+            if (enPos)
+                return true;
+            else
+                menuHidennNew(t2);
+        }
+    }
+    function Mobile(t) {
+        //alert("entra");
+        try {
+            fnExpand(t, 2, 0);
+        }
+        catch (error) {
+            alert(error);
+        }
+    }
+
+    function doSubmitOficinaVirtualDos(pTemplate) {
+
+        window.open(pTemplate, target = '_blank');
+
+    }
+
+    function doSubmitPreNetMinipool(pTemplate, pPerfil) {
+        /*
+        if (window.location.host.indexOf(servidor) > -1)
+        {
+        var cad = pTemplate.replace(/WebAsesores/gi, 'WebAsesoresMS');        
+        pTemplate = cad;
+        }
+        */
+        document.FormPreNetMinipool.txtTemplateN.value = pTemplate;
+        document.FormPreNetMinipool.txtPerfil.value = pPerfil;
+        document.FormPreNetMinipool.action = pTemplate;
+        window.open('', 'kakasession', 'scrollbars=yes,resizable=yes, status=yes, menu=yes');
+        document.FormPreNetMinipool.submit();
+        MuestraCargando('no');
+    }
+
+    function doSubmitPreNet(pTemplate) {
+        /*
+        if (window.location.host.indexOf(servidor) > -1)
+        {
+        var cad = pTemplate.replace(/WebAsesores/gi, 'WebAsesoresMS');        
+        pTemplate = cad;
+        }
+        */
+        document.FormPreNet.txtTemplateN.value = pTemplate;
+        document.FormPreNet.action = pTemplate;
+        window.open('', 'kakasession', 'scrollbars=yes,resizable=yes, status=yes, menu=yes');
+        document.FormPreNet.submit();
+        MuestraCargando('no');
+    }
+
+    function doSubmitAgentes(pTemplate) {
+
+        var str = pTemplate;
+        var n = str.indexOf("Reportesdeventas");
+        if (n  > -1) { 
+                 window.open(pTemplate, target = '_blank');
+             }
+        else {
+            document.FormaAgentes.action = pTemplate;
+            document.FormaAgentes.submit();
+        }
+
+    }
+
+    function doSubmitFunc(pTemplate, bandera) {
+        document.FormaAgentes.bandera.value = bandera;
+        document.FormaAgentes.action = pTemplate;
+        document.FormaAgentes.submit();
+    }
+
+    function OpenWindowOI(File, Select) {
+        var URL
+        URL = "/AsesoresWeb/Reportes/ShowFile.aspx?idReport=" + File + "&idTime=" + Select;
+        window.open(URL, '11223344', 'height=400,width=600,scrollbars=yes,resizable=yes');
+
+        MuestraCargando('no');
+    }
+
+    function IndCons(user) {
+        document.frmIndCons.txtUser = user;
+        document.frmIndCons.txtOption = "0";
+        document.frmIndCons.submit();
+        MuestraCargando('no');
+    }
+
+    function OpenReport(parametro, TypeRep, vRol) {
+        var URL = window.location.protocol + '//' + window.location.host + '/AgentSite/AdminReports2.asp?idParam=' + parametro + "&idReport=" + TypeRep + "&idRol=" + vRol;
+        window.open(URL, '11223344', 'height=400,width=600,scrollbars=yes,resizable=yes');
+        MuestraCargando('no');
+    }
+
+    function OpenReportEdoCta(parametro, TypeRep, TypeReporte2, vRol) {
+        var URL
+        URL = window.location.protocol + '//' + window.location.host + '/AgentSite/AdminReports2.asp?idParam=' + parametro + "&idReport=" + TypeReporte2 + "&idTypeReport=" + TypeRep + "&idRol=" + vRol;
+        window.open(URL, '11223344', 'height=400,width=600,scrollbars=yes,resizable=yes');
+        MuestraCargando('no');
+    }
+
+    /********************************************************************************************
+    Se modifica esta función para pasarle el parametro Rol. [NPMS.11-Abr-2013]
+    *********************************************************************************************/
+    function OpenReportNet(parametro, TypeRep, idTime, rolConsulta) {
+        var URL
+        URL = "/AsesoresWeb/Reportes/ShowFile.aspx?idParam=" + parametro + "&idReport=" + TypeRep + "&idTime=" + idTime;
+        if (rolConsulta != null)
+            URL = URL + "&rol=" + rolConsulta;
+        window.open(URL, '11223344', 'height=400,width=600,scrollbars=yes,resizable=yes');
+        MuestraCargando('no');
+    }
+
+
+    function doSubmitContenidos() {
+        window.location.href = "https://www.asesordeseguros.com.mx/Home.aspx";
+    }
+
+    function doSubmitContent(User, Name, Rol, UserId) {
+        var URL
+        URL = "http://ottawa.smnyl.com.mx/AsesoresWeb/principal.aspx";
+        alert(URL);
+        window.navigate(URL);
+        MuestraCargando('no');
+    }
+
+    function doSubmitReportesVtsAg() {
+        document.formaReportesAg.submit();
+        MuestraCargando('no');
+    }
+
+    function doSubmitReportesVtsPr() {
+        document.formaReportesPr.submit();
+        MuestraCargando('no');
+    }
+
+    function OpenReportECMini(parametro) {
+        frmParamECMini.idProm.value = parametro;
+        frmParamECMini.submit();
+    }
+    function OpenWindowNIP(vAgente) {
+        document.frmEnvio.action = window.location.protocol + '//' + window.location.host + '/AsesoresWeb/Servicios/NIP/NIP.aspx';
+
+        document.frmEnvio.txtAgente.value = vAgente;
+        document.frmEnvio.submit();
+    }		
+
+</script>
+    
+<style type="text/css">
+	.ctl00_mnuPrincipal_0 { background-color:white;visibility:hidden;display:none;position:absolute;left:0px;top:0px; }
+	.ctl00_mnuPrincipal_1 { font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;text-decoration:none; }
+	.ctl00_mnuPrincipal_2 { border-style:None;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;height:20px;width:100%; }
+	.ctl00_mnuPrincipal_3 { color:White; }
+	.ctl00_mnuPrincipal_4 { background-color:#0078C1;height:30px;padding:2px 5px 2px 5px; }
+	.ctl00_mnuPrincipal_5 { background-color:#0078C1; }
+	.ctl00_mnuPrincipal_6 { color:White;font-weight:normal; }
+	.ctl00_mnuPrincipal_7 { padding:2px 5px 2px 5px; }
+	.ctl00_mnuPrincipal_8 { background-color:#0078C1;width:180px; }
+	.ctl00_mnuPrincipal_9 { color:White;font-weight:bold; }
+	.ctl00_mnuPrincipal_10 { color:White;background-color:#0078C1;font-weight:bold; }
+	.ctl00_mnuPrincipal_11 { color:White;font-weight:bold; }
+	.ctl00_mnuPrincipal_12 { color:White;background-color:#336699;font-weight:bold; }
+
+</style></head>
+<body onbeforeunload="return window_onbeforeunload()" onload="return window_onload()">
+    <form action="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/PolizasAgente.aspx" method="post" name="FormPreNetMinipool" target="kakasession" id="Form11">
+        <input type="hidden" name="txtTemplateN">
+        <input type="hidden" name="txtPerfil">
+	    <input type="hidden" name="txtUser" value="0" id="Hidden50">		
+	    <input type="hidden" name="KASessionId" value="" id="Hidden51">
+    </form>
+    <form action="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/PolizasAgente.aspx" method="post" name="FormPreNet" target="kakasession" id="Form10">
+            <input type="hidden" name="txtTemplateN">
+		    <input type="hidden" name="txtUser" value="0" id="Hidden46">		
+		    <input type="hidden" name="KASessionId" value="" id="Hidden47">
+    </form>
+    <form action="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/PolizasAgente.aspx" method="post" name="FormaAgentes">
+            <input type="hidden" name="bandera">
+		    <input type="hidden" name="txtUser" value="0" id="Hidden3">		
+		    <input type="hidden" name="txtKASession" value="" id="Hidden4">
+    </form>
+    <form name="frmIndConservacion" action="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/AgentSite/SearchReport.asp" method="POST" target="11223344">										   
+            <input type="hidden" name="txtPath">
+            <input type="hidden" name="txtURL">
+            <input type="hidden" name="txtFile">	
+    </form>
+    <form name="frmIndCons" method="POST" action="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/PolizasAgente.aspx">
+            <input type="hidden" name="txtUser">
+            <input type="hidden" name="txtOption">	
+    </form>       
+    <form action="https://www.asesordeseguros.com.mx/portal/jsp/VAPSessionInit_1.jsp" method="post" name="formaContenidosBack">
+        <input type="hidden" name="txtUser" value="Kumma22"> 
+        <input type="hidden" name="txtUserId" value="91395"> 
+        <input type="hidden" name="txtRol" value="AsistenteSinIF"> 
+        <input type="hidden" name="txtName" value="">         
+    </form>
+    
+    <form action="https://www.asesordeseguros.com.mx/portal/jsp/VAPSessionInit_1.jsp" method="post" name="formaReportesAg">    
+        <input type="hidden" name="txtUser" value="Kumma22"> 
+        <input type="hidden" name="txtUserId" value="91395"> 
+        <input type="hidden" name="txtRol" value="AsistenteSinIF"> 
+        <input type="hidden" name="txtName" value=""> 
+        <input type="hidden" name="ReturnUrl" value=""> 
+    </form>
+    
+    <form action="https://www.asesordeseguros.com.mx/portal/jsp/VAPSessionInit_1.jsp" method="post" name="formaReportesPr">    
+        <input type="hidden" name="txtUser" value="Kumma22"> 
+        <input type="hidden" name="txtUserId" value="91395"> 
+        <input type="hidden" name="txtRol" value="AsistenteSinIF"> 
+        <input type="hidden" name="txtName" value=""> 
+        <input type="hidden" name="ReturnUrl" value=""> 
+    </form>    
+
+    <form name="frmEnvio" action="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/PolizasAgente.aspx" method="POST" target="NIP">
+        <input type="hidden" name="txtAgente" value="1">
+    </form>
+            
+  <form id="frmParamECMini" action="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/NvoEdoCtaMinipool2.aspx" method="POST">
+		<input id="Hidden1" type="hidden" name="idProm" value="">
+    </form>
+    <form name="aspnetForm" method="post" action="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/PolizasAgente.aspx" id="aspnetForm" onsubmit="return ArrancaMonitor();">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="./04_files/WebResource.axd" type="text/javascript"></script>
+
+
+<script src="./04_files/WebResource(1).axd" type="text/javascript"></script>
+    <div style="display:none" id="ContenedorUltimaPeticionHidden">
+        <input type="hidden" name="ctl00$UltimaPeticionHidden" id="ctl00_UltimaPeticionHidden">
+        </div>
+    <div>
+        <table id="ctl00_tblMaster" border="0" cellpadding="0" cellspacing="0" style="width: 900px; height: 100%" align="center">
+	<tbody><tr>
+		<td height="1" style="text-align: left" valign="top">
+                    <table id="ctl00_tblEncabezado" style="width: 100%">
+			<tbody><tr>
+				<td style="width: 100">                                
+                                <input type="image" name="ctl00$imaLogo" id="ctl00_imaLogo" title="Regresa a la página principal" class="imagen" src="./04_files/logo_smnyl.gif" style="border-width:0px;">
+                                </td>
+				<td align="right">
+                                <img src="./04_files/header1.jpg" id="ctl00_Img3"></td>
+			</tr>
+		</tbody></table>
+		
+                </td>
+	</tr>
+	<tr>
+		<td valign="top" bgcolor="#0078c1">
+                 <div id="divMaster">
+                    <table style="width: 100%" height="30">
+                        <tbody><tr>
+                            <td colspan="2">
+                    <span id="ctl00_LbNombre" class="textobold" style="color:White;">Bienvenido usuario asistente: </span>
+                                &nbsp; &nbsp; &nbsp;&nbsp;
+                    <span id="ctl00_LbIdAgente" class="textobold" style="color:White;">No. : 91395</span></td>
+                            <td align="left" colspan="1" style="text-align: left">
+                                
+                                </td>
+                            <td colspan="1" style="text-align: right">
+                                &nbsp;
+                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+                                </td>
+                            <td colspan="1" style="text-align: right">
+                                &nbsp;<a id="ctl00_LoginStatus1" class="textobold" href="javascript:__doPostBack(&#39;ctl00$LoginStatus1$ctl00&#39;,&#39;&#39;)" style="color:White;text-decoration:none;">Salir</a>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                    <a href="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/PolizasAgente.aspx#ctl00_mnuPrincipal_SkipLink"><img alt="Skip Navigation Links" src="./04_files/WebResource(2).axd" width="0" height="0" style="border-width:0px;"></a><table id="ctl00_mnuPrincipal" class=".menuIE8 ctl00_mnuPrincipal_5 ctl00_mnuPrincipal_2" cellpadding="0" cellspacing="0" border="0">
+			<tbody><tr>
+				<td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln0"><table class="ctl00_mnuPrincipal_4" cellpadding="0" cellspacing="0" border="0" width="100%">
+					<tbody><tr>
+						<td style="white-space:nowrap;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_3" href="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/PolizasAgente.aspx#" style="cursor:text;">Consultas</a></td><td style="width:0;"><img src="./04_files/WebResource(3).axd" alt="Expand Consultas" style="border-style:none;vertical-align:middle;"></td>
+					</tr>
+				</tbody></table></td><td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln1"><table class="ctl00_mnuPrincipal_4" cellpadding="0" cellspacing="0" border="0" width="100%">
+					<tbody><tr>
+						<td style="white-space:nowrap;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_3" href="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/PolizasAgente.aspx#" style="cursor:text;">Servicios</a></td><td style="width:0;"><img src="./04_files/WebResource(3).axd" alt="Expand Servicios" style="border-style:none;vertical-align:middle;"></td>
+					</tr>
+				</tbody></table></td><td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln2"><table class="ctl00_mnuPrincipal_4" cellpadding="0" cellspacing="0" border="0" width="100%">
+					<tbody><tr>
+						<td style="white-space:nowrap;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_3" href="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/PolizasAgente.aspx#" style="cursor:text;">Reportes</a></td><td style="width:0;"><img src="./04_files/WebResource(3).axd" alt="Expand Reportes" style="border-style:none;vertical-align:middle;"></td>
+					</tr>
+				</tbody></table></td><td id="ctl00_mnuPrincipaln3"><table class="ctl00_mnuPrincipal_4" cellpadding="0" cellspacing="0" border="0" width="100%">
+					<tbody><tr>
+						<td style="white-space:nowrap;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_3">Herramientas</a></td>
+					</tr>
+				</tbody></table></td><td style="width:3px;"></td><td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln4"><table class="ctl00_mnuPrincipal_4" cellpadding="0" cellspacing="0" border="0" width="100%">
+					<tbody><tr>
+						<td style="white-space:nowrap;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_3" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;javascript:doSubmitContenidos()#$4##0&#39;)">Información General</a></td>
+					</tr>
+				</tbody></table></td>
+			</tr>
+		</tbody></table><div id="ctl00_mnuPrincipaln0Items" class="ctl00_mnuPrincipal_0 ctl00_mnuPrincipal_8" style="visibility: hidden; display: none; top: 167px; height: 99px; clip: rect(auto, auto, auto, auto); left: 258px; z-index: 1;">
+			<table border="0" cellpadding="0" cellspacing="0" style="top: 0px;">
+				<tbody><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln5">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$0##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Consultas/Polizas/Asesor/PolizasAgente.aspx\&quot;)#$107##0&#39;)"><img src="./04_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Polizas</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln6">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$0##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Principal.aspx\&quot;)#$108##0&#39;)"><img src="./04_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Recibos / Aportaciones</a></td><td style="width:0;"><img src="./04_files/WebResource(3).axd" alt="Expand Recibos / Aportaciones" style="border-style:none;vertical-align:middle;"></td>
+						</tr>
+					</tbody></table></td>
+				</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln7">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$0##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Consultas/ComprobantesPago/AgFolioAudit.aspx\&quot;)#$111##0&#39;)"><img src="./04_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Comprobantes de Pago</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln8">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$0##0\\javascript:doSubmitPreNetMinipool(\&quot;/AsesoresWeb/Tramites/PendientesA.aspx\&quot;,\&quot;1\&quot;)#$113##0&#39;)"><img src="./04_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Trámites</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln9">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$0##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Consultas/VencimientosDotales/VencimientosD.aspx\&quot;)#$114##0&#39;)"><img src="./04_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Vencimientos Dotales</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln10">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$0##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Consultas/RechazoBancario/Asesor/Rechazos.aspx\&quot;)#$210##0&#39;)"><img src="./04_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Rechazo Bancario</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr>
+			</tbody></table><div class="ctl00_mnuPrincipal_7 ctl00_mnuPrincipal_0" id="ctl00_mnuPrincipaln0ItemsUp" onmouseover="PopOut_Up(this)" onmouseout="PopOut_Stop(this)" style="text-align: center; visibility: hidden; display: none;">
+				<img src="./04_files/WebResource(4).axd" alt="Scroll up">
+			</div><div class="ctl00_mnuPrincipal_7 ctl00_mnuPrincipal_0" id="ctl00_mnuPrincipaln0ItemsDn" onmouseover="PopOut_Down(this)" onmouseout="PopOut_Stop(this)" style="text-align: center; visibility: hidden; display: none;">
+				<img src="./04_files/WebResource(5).axd" alt="Scroll down">
+			</div>
+		</div><div id="ctl00_mnuPrincipaln6Items" class="ctl00_mnuPrincipal_0 ctl00_mnuPrincipal_8" style="visibility: hidden; display: none;">
+			<table border="0" cellpadding="0" cellspacing="0" style="top: 0px;">
+				<tbody><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln11">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$0##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Principal.aspx\&quot;)#$108##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Consultas/Recibos/Asesor/RecibosAgFx.aspx\&quot;)#$109##0&#39;)"><img src="./04_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Planes Flexibles</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln12">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$0##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Principal.aspx\&quot;)#$108##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Consultas/Recibos/Asesor/RecibosAg.aspx\&quot;)#$110##0&#39;)"><img src="./04_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Planes Tradicionales</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr>
+			</tbody></table><div class="ctl00_mnuPrincipal_7 ctl00_mnuPrincipal_0" id="ctl00_mnuPrincipaln6ItemsUp" onmouseover="PopOut_Up(this)" onmouseout="PopOut_Stop(this)" style="text-align:center;">
+				<img src="./04_files/WebResource(4).axd" alt="Scroll up">
+			</div><div class="ctl00_mnuPrincipal_7 ctl00_mnuPrincipal_0" id="ctl00_mnuPrincipaln6ItemsDn" onmouseover="PopOut_Down(this)" onmouseout="PopOut_Stop(this)" style="text-align:center;">
+				<img src="./04_files/WebResource(5).axd" alt="Scroll down">
+			</div>
+		</div><div id="ctl00_mnuPrincipaln1Items" class="ctl00_mnuPrincipal_0 ctl00_mnuPrincipal_8" style="visibility: hidden; display: none;">
+			<table border="0" cellpadding="0" cellspacing="0" style="top: 0px;">
+				<tbody><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln13">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$1##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Servicios/ActualizacionDatos/AgentInfo.aspx\&quot;)#$116##0&#39;)"><img src="./04_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Actualización de Datos</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln14">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$1##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Servicios/CentroContacto/Wellcomeadm.aspx\&quot;)#$117##0&#39;)"><img src="./04_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Cto de contacto/Atn Clientes</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln15">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$1##0\\javascript:doSubmitPreNetMinipool(\&quot;/AsesoresWeb/Tramites/ConsultaImagenes.aspx\&quot;,\&quot;1\&quot;)#$118##0&#39;)"><img src="./04_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Consulta Imagenes</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr>
+			</tbody></table><div class="ctl00_mnuPrincipal_7 ctl00_mnuPrincipal_0" id="ctl00_mnuPrincipaln1ItemsUp" onmouseover="PopOut_Up(this)" onmouseout="PopOut_Stop(this)" style="text-align:center;">
+				<img src="./04_files/WebResource(4).axd" alt="Scroll up">
+			</div><div class="ctl00_mnuPrincipal_7 ctl00_mnuPrincipal_0" id="ctl00_mnuPrincipaln1ItemsDn" onmouseover="PopOut_Down(this)" onmouseout="PopOut_Stop(this)" style="text-align:center;">
+				<img src="./04_files/WebResource(5).axd" alt="Scroll down">
+			</div>
+		</div><div id="ctl00_mnuPrincipaln2Items" class="ctl00_mnuPrincipal_0 ctl00_mnuPrincipal_8" style="visibility: hidden; display: none;">
+			<table border="0" cellpadding="0" cellspacing="0" style="top: 0px;">
+				<tbody><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln16">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$2##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Reportes/Facturas/Asesor/FacturasAsesor.aspx\&quot;)#$119##0&#39;)"><img src="./04_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Facturas</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_mnuPrincipaln17">
+					<td><table class="ctl00_mnuPrincipal_7" cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tbody><tr>
+							<td style="white-space:nowrap;width:100%;"><a class="ctl00_mnuPrincipal_1 ctl00_mnuPrincipal_6" href="javascript:__doPostBack(&#39;ctl00$mnuPrincipal&#39;,&#39;#$2##0\\javascript:doSubmitAgentes(\&quot;/AsesoresWeb/Reportes/NotasCredito/Asesor/NotasCredAsesor.aspx\&quot;)#$120##0&#39;)"><img src="./04_files/bullet2.gif" alt="" style="border-style:none;vertical-align:middle;">Notas de Crédito</a></td>
+						</tr>
+					</tbody></table></td>
+				</tr>
+			</tbody></table><div class="ctl00_mnuPrincipal_7 ctl00_mnuPrincipal_0" id="ctl00_mnuPrincipaln2ItemsUp" onmouseover="PopOut_Up(this)" onmouseout="PopOut_Stop(this)" style="text-align:center;">
+				<img src="./04_files/WebResource(4).axd" alt="Scroll up">
+			</div><div class="ctl00_mnuPrincipal_7 ctl00_mnuPrincipal_0" id="ctl00_mnuPrincipaln2ItemsDn" onmouseover="PopOut_Down(this)" onmouseout="PopOut_Stop(this)" style="text-align:center;">
+				<img src="./04_files/WebResource(5).axd" alt="Scroll down">
+			</div>
+		</div><a id="ctl00_mnuPrincipal_SkipLink"></a>    
+                     </div>                  
+                </td>
+	</tr>
+	<tr>
+		<td align="left" valign="top" height="350">
+                 <div id="Contenedor">
+                        
+    <script src="./04_files/jquery-1.8.2.js.download" type="text/javascript"></script>
+    <link href="./04_files/jquery-ui.css" rel="stylesheet" type="text/css">
+    <script src="./04_files/jquery-ui.js.download" type="text/javascript"></script>
+    <style type="text/css" media="screen">
+        .loading-area
+        {
+            background-color: #FFF;
+            border-radius: 20px !important;
+            margin-left: 5%;
+            margin-right: 5%;
+            height: 30%;
+            width: 15%;
+        }
+        .loading-text
+        {
+            color: #000;
+            font-size: 15px;
+        }
+        .loading-image
+        {
+            width: 60%;
+            height: 60%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    <table width="100%">
+        <tbody><tr>
+            <td class="tituloblanco" style="height: 18px" bgcolor="#A7A9AB">
+                Consulta de pólizas &nbsp;<span id="ctl00_ContentPlaceHolder1_Label1"></span>
+                <span id="ctl00_ContentPlaceHolder1_Label2"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+    </tbody></table>
+    <table width="100%" align="center">
+        <tbody><tr>
+            <td class="subtituloazul" colspan="2">
+                Seleccione un Ramo para consultar sus pólizas y de click en aceptar.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="./04_files/linea.gif" width="100%" height="8">
+            </td>
+        </tr>
+    </tbody></table>
+    <table width="90%" align="center">
+        <tbody><tr>
+            <td class="campoazul_textonegro" style="width: 80px">
+                Ramo
+            </td>
+            <td colspan="3">
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 196px">
+                <select name="ctl00$ContentPlaceHolder1$DDListRamo" id="ctl00_ContentPlaceHolder1_DDListRamo">
+			<option selected="selected" value="0">Seleccione un Ramo</option>
+			<option value="1">Vida</option>
+			<option value="2">Gastos Médicos</option>
+			<option value="3">Accidentes Personales</option>
+			<option value="4">Vencimientos Planes Flexibles</option>
+			<option value="5">Visualiza</option>
+
+		</select>
+            </td>
+            <td colspan="3">
+                <input type="submit" name="ctl00$ContentPlaceHolder1$Aceptar" value="Aceptar" id="ctl00_ContentPlaceHolder1_Aceptar" class="boton">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                &nbsp;
+            </td>
+        </tr>
+    </tbody></table>
+    <table id="tblFilter" width="90%" align="center">
+        <tbody><tr>
+            <td class="GridHeader" style="width: 15%">
+                <span id="ctl00_ContentPlaceHolder1_lblNumPoliza_filter">No. Póliza</span>
+            </td>
+            <td class="GridHeader" style="width: 20%">
+                <span id="ctl00_ContentPlaceHolder1_lblContratante_filter">Contratante</span>
+            </td>
+            <td class="GridHeader" style="width: 20%">
+                <span id="ctl00_ContentPlaceHolder1_lblAseguradoPrincipal_filter">Asegurado Principal</span>
+            </td>
+            <td class="GridHeader" style="width: 25%">
+                <span id="ctl00_ContentPlaceHolder1_lblProducto_filter">Producto</span>
+            </td>
+            <td class="GridHeader" style="width: 20%">
+                <span id="ctl00_ContentPlaceHolder1_lblEstatus_filter">Estatus</span>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 15%;">
+                <input name="ctl00$ContentPlaceHolder1$txtNumPoliza" type="text" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$txtNumPoliza\&#39;,\&#39;\&#39;)&#39;, 0)" onkeypress="if (WebForm_TextBoxKeyHandler(event) == false) return false;" id="ctl00_ContentPlaceHolder1_txtNumPoliza" class="lupaSearch" style="width:110px;">
+            </td>
+            <td style="width: 20%;">
+                <input name="ctl00$ContentPlaceHolder1$txtContratante" type="text" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$txtContratante\&#39;,\&#39;\&#39;)&#39;, 0)" onkeypress="if (WebForm_TextBoxKeyHandler(event) == false) return false;" id="ctl00_ContentPlaceHolder1_txtContratante" class="lupaSearch" style="width:150px;">
+            </td>
+            <td style="width: 20%;">
+                <input name="ctl00$ContentPlaceHolder1$txtAseguradoPpal" type="text" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$txtAseguradoPpal\&#39;,\&#39;\&#39;)&#39;, 0)" onkeypress="if (WebForm_TextBoxKeyHandler(event) == false) return false;" id="ctl00_ContentPlaceHolder1_txtAseguradoPpal" class="lupaSearch" style="width:150px;">
+            </td>
+            <td style="width: 25%;">
+                <input name="ctl00$ContentPlaceHolder1$txtProducto" type="text" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$txtProducto\&#39;,\&#39;\&#39;)&#39;, 0)" onkeypress="if (WebForm_TextBoxKeyHandler(event) == false) return false;" id="ctl00_ContentPlaceHolder1_txtProducto" class="lupaSearch" style="width:190px;">
+            </td>
+            <td style="width: 20%;">
+                <input name="ctl00$ContentPlaceHolder1$txtEstatus" type="text" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$txtEstatus\&#39;,\&#39;\&#39;)&#39;, 0)" onkeypress="if (WebForm_TextBoxKeyHandler(event) == false) return false;" id="ctl00_ContentPlaceHolder1_txtEstatus" class="lupaSearch" style="width:150px;">
+            </td>
+        </tr>
+    </tbody></table>
+    <table id="tblPolizas" width="90%" align="center">
+        <tbody><tr>
+            <td>
+                <div>
+			<table cellspacing="0" cellpadding="4" rules="rows" border="1" id="ctl00_ContentPlaceHolder1_GVPolList" style="color:#333333;font-family:Arial;font-size:Small;width:100%;border-collapse:collapse;">
+				<tbody><tr class="GridHeaderHidden">
+					<th scope="col">&nbsp;</th><th scope="col">&nbsp;</th><th scope="col">&nbsp;</th><th scope="col">&nbsp;</th><th scope="col">&nbsp;</th><th scope="col">&nbsp;</th><th scope="col">&nbsp;</th>
+				</tr><tr class="GridRow" style="background-color:AliceBlue;">
+					<td align="left" style="width:15%;">
+                                <a id="ctl00_ContentPlaceHolder1_GVPolList_ctl17_lnkPoliza" class="ligas" href="05.html">VI0002598672</a>
+                                <input name="ctl00$ContentPlaceHolder1$GVPolList$ctl17$numpoliza" type="text" value="VI0002598672" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$GVPolList$ctl17$numpoliza\&#39;,\&#39;\&#39;)&#39;, 0)" onkeypress="if (WebForm_TextBoxKeyHandler(event) == false) return false;" id="ctl00_ContentPlaceHolder1_GVPolList_ctl17_numpoliza" style="display: none;">
+                            </td><td align="left" style="width:20%;">
+                                <span id="ctl00_ContentPlaceHolder1_GVPolList_ctl17_lblContratante">JAVIER MARCOS ANDRADE</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="ctl00_ContentPlaceHolder1_GVPolList_ctl17_lblAseguradoPrincipal">JAVIER MARCOS ANDRADE</span>
+                            </td><td align="left" style="width:25%;">
+                                <span id="ctl00_ContentPlaceHolder1_GVPolList_ctl17_lblProducto">IMAGINA SER 65</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="ctl00_ContentPlaceHolder1_GVPolList_ctl17_lblEstatus">En Vigor</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="ctl00_ContentPlaceHolder1_GVPolList_ctl17_lblCorreoMail" name="lblCorreoMail" style="display: none;"></span>
+                                <input name="ctl00$ContentPlaceHolder1$GVPolList$ctl17$email" type="text" value="fernandezsebastian@outlook.com" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$GVPolList$ctl17$email\&#39;,\&#39;\&#39;)&#39;, 0)" onkeypress="if (WebForm_TextBoxKeyHandler(event) == false) return false;" id="ctl00_ContentPlaceHolder1_GVPolList_ctl17_email" class="email" style="display: none;">
+                            </td><td>
+                                <input type="submit" name="ctl00$ContentPlaceHolder1$GVPolList$ctl17$btnMailOder" value="Mail Order" id="ctl00_ContentPlaceHolder1_GVPolList_ctl17_btnMailOder" class="boton">
+                            </td>
+				</tr><tr class="GridRow">
+					<td align="left" style="width:15%;">
+                                <a id="ctl00_ContentPlaceHolder1_GVPolList_ctl18_lnkPoliza" class="ligas" href="index.html">VI0002610888</a>
+                                <input name="ctl00$ContentPlaceHolder1$GVPolList$ctl18$numpoliza" type="text" value="VI0002610888" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$GVPolList$ctl18$numpoliza\&#39;,\&#39;\&#39;)&#39;, 0)" onkeypress="if (WebForm_TextBoxKeyHandler(event) == false) return false;" id="ctl00_ContentPlaceHolder1_GVPolList_ctl18_numpoliza" style="display: none;">
+                            </td><td align="left" style="width:20%;">
+                                <span id="ctl00_ContentPlaceHolder1_GVPolList_ctl18_lblContratante">JAVIER MARCOS ANDRADE</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="ctl00_ContentPlaceHolder1_GVPolList_ctl18_lblAseguradoPrincipal">JAVIER MARCOS ANDRADE</span>
+                            </td><td align="left" style="width:25%;">
+                                <span id="ctl00_ContentPlaceHolder1_GVPolList_ctl18_lblProducto">ORVI 99 10 UDIS</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="ctl00_ContentPlaceHolder1_GVPolList_ctl18_lblEstatus">En Vigor</span>
+                            </td><td align="left" style="width:20%;">
+                                <span id="ctl00_ContentPlaceHolder1_GVPolList_ctl18_lblCorreoMail" name="lblCorreoMail" style="display: none;"></span>
+                                <input name="ctl00$ContentPlaceHolder1$GVPolList$ctl18$email" type="text" value="fernandezsebastian@outlook.com" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$GVPolList$ctl18$email\&#39;,\&#39;\&#39;)&#39;, 0)" onkeypress="if (WebForm_TextBoxKeyHandler(event) == false) return false;" id="ctl00_ContentPlaceHolder1_GVPolList_ctl18_email" class="email" style="display: none;">
+                            </td><td>
+                                <input type="submit" name="ctl00$ContentPlaceHolder1$GVPolList$ctl18$btnMailOder" value="Mail Order" id="ctl00_ContentPlaceHolder1_GVPolList_ctl18_btnMailOder" class="boton">
+                            </td>
+				</tr>
+			</tbody></table>
+		</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                
+                <input type="submit" name="ctl00$ContentPlaceHolder1$BtnImprimir" value="ENVIAR A EXCEL" id="ctl00_ContentPlaceHolder1_BtnImprimir" class="boton" style="width:110px;">
+                &nbsp; &nbsp; &nbsp;&nbsp;
+                
+            </td>
+        </tr>
+    </tbody></table>
+    <!-- Modal -->
+    
+    
+    
+    <script type="text/javascript">
+
+
+
+        $(function () {
+
+            $(".loading-area").dialog({
+                autoOpen: false,
+                dialogClass: "no-titlebar",
+                modal: true,
+                resizable: false,
+                backdrop: 'static',
+                keyboard: false,
+                draggable: false,
+                height: 200,
+                width: 200,
+                open: function (event, ui) {
+                    $(".no-titlebar .ui-dialog-titlebar").css("display", "none");
+                }
+            });
+
+            $("#dialog-success").dialog({
+                autoOpen: false,
+                dialogClass: "no-titlebar",
+                modal: true,
+                resizable: false,
+                backdrop: 'static',
+                keyboard: false,
+                draggable: false,
+                height: 200,
+                width: 400,
+                buttons: {
+                    "Aceptar": function () {
+                        $(this).dialog('close');
+                    }
+                },
+                open: function (event, ui) {
+                    $(".no-titlebar .ui-dialog-titlebar").css("display", "none");
+                }
+            });
+
+            $("#dialog-modal").dialog({
+                autoOpen: false,
+                closeOnEscape: false,
+                resizable: false,
+                height: 370,
+                width: 660,
+                modal: true,
+                backdrop: 'static',
+                keyboard: false,
+                draggable: false,
+                buttons: {
+                    "Envíar Correo": function () {
+                        var check = $("#chkOtro").is(':checked');
+
+                        if (check && $('.textCorreonuevoRen').val() == '') {
+                            $("#txtMensaje").html("No se ha capturado una dirección de correo electrónico.");
+                            $("#txtMensaje").show();
+                            return false;
+                        } else if ($('#correoRenovacion').val() == '' && !check) {
+                            $("#txtMensaje").html("El asesor no cuenta con una dirección de correo electrónico registrada.");
+                            $("#txtMensaje").show();
+                            return false;
+                        } else if ($('#correoRenovacion').val() != '' && check && $('.textCorreonuevoRen').val() != '') {
+                            if (validateEmail($('.textCorreonuevoRen').val())) {
+                                fnEnviarCorreo();
+                            } else {
+                                $("#txtMensaje").html("El correo electrónico proporcionado no es válido.");
+                                $("#txtMensaje").show();
+                            }
+                        } else if ($('#correoRenovacion').val() != '' && !check) {
+                            fnEnviarCorreo();
+                        } else {
+                            fnEnviarCorreo();
+                        }
+
+                    },
+                    Cancelar: function () {
+                        //$(this).dialog("close");
+                        // showLoader();
+                        $("#dialog-modal").dialog("close");
+                    }
+                },
+                open: function (event, ui) {
+                    $(this).parent().children().children('.ui-dialog-titlebar-close').hide();
+
+                    $('#chkOtro').prop('checked', false);
+                    $("#txtMensaje").css("display", "none");
+
+                    if (!$('#correoRenovacion').val()) {
+                        $('#chkOtro').prop('checked', true);
+                        fnOtroCorreo();
+                    } else {
+                        $('#chkOtro').prop('checked', false);
+                        fnOtroCorreo();
+                    }
+                }
+            });
+        });
+
+        function validateEmail($email) {
+            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            return emailReg.test($email);
+        }
+
+        function fnValidarEmail(obj) {
+            if (validateEmail(obj.value)) {
+                $("#txtMensaje").css("display", "none");
+            } else {
+                $("#txtMensaje").html("</br>El correo electrónico proporcionado no es válido.");
+                $("#txtMensaje").show();
+            }
+        }
+
+        function fnEnviarCorreo() {
+            $("#dialog-modal").dialog("close");
+            $(".loading-area").dialog("open");
+
+            var email = ($("#chkOtro").is(':checked')) ? $('.textCorreonuevoRen').val() : $('#correoRenovacion').val();
+            var dta = JSON.stringify({ poliza: $('#polizaRenovacion').val(), correo: email, anioRenovacion: $('#anioRenovacion').val() });
+               var request = $.ajax({
+                type: "POST",
+                url: document.URL + "/EnviarCorreoRenovacion",
+                data: dta,
+                contentType: 'application/json; charset=utf-8',
+                dataType: "json",
+                timeout: 30000,
+                success: function () {
+                    $("#dialog-success.ui-dialog-titlebar").css("background-color", "green");
+                    $("#dialog-message").html("<br />La documentación de renovación ha sido enviada al correo especificado.");
+                    $(".loading-area").dialog("close");
+                    $("#dialog-success").dialog("open");
+                },
+                error: function (httpObj, textStatus, data) {
+                    $("#dialog-success.ui-dialog-titlebar").css("background-color", "red");
+                    $("#dialog-message").html(data);
+                    $(".loading-area").dialog("close");
+                    $("#dialog-success").dialog("open");
+                }
+            });
+        }
+
+        function AbrirModal(obj) {
+            var numRow = obj.parentNode.parentNode.rowIndex;
+            var table = document.getElementById("ctl00_ContentPlaceHolder1_GVPolList");
+            // document.getElementById("ctl00_ContentPlaceHolder1_TxtPoliza").value = '';
+
+            if (table.rows.length > 0) {
+                var inputs = table.rows[numRow].getElementsByTagName("input");
+                for (var j = 0; j < inputs.length; j++) {
+                    if (inputs[j].id.indexOf("email") > -1) {
+                        //  alert(inputs[j].value);
+                        correoAnt = inputs[j].value;
+                    }
+                    if (inputs[j].id.indexOf("numpoliza") > -1) {
+                        //alert(inputs[j].value);
+                        numpolAnt = inputs[j].value;
+                    }
+                    if (inputs[j].id.indexOf("UltimaReno") > -1) {
+//                        alert(inputs[j].value);
+                        numAnioReno = inputs[j].value;
+                    }
+                }
+            }
+            $('#correoRenovacion').val(correoAnt);
+            $('#polizaRenovacion').val(numpolAnt);
+            $('#anioRenovacion').val(numAnioReno);
+            $("#txtCorreoOriginal").html((correoAnt) ? correoAnt : "&laquo;Sin correo específicado&raquo;");
+            $("#lblPolizaRenovacion").html(numpolAnt);
+            $('.textCorreonuevoRen').val('');
+            $('#dialog-modal').dialog("open");
+        }
+
+        function fnOtroCorreo() {
+            var check = $("#chkOtro").is(':checked');
+
+            if (check) {
+                $("#divCorreoNuevoRe").show("slow");
+                $('.textCorreonuevoRen').val('');
+                $("#txtMensaje").css("display", "none");
+            } else {
+                $("#divCorreoNuevoRe").css("display", "none");
+                $('.textCorreonuevoRen').val('');
+                $("#txtMensaje").css("display", "none");
+            }
+        }
+              
+        
+    </script>
+
+                    </div>
+                   <div id="Cargando" style="display: none;">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <table id="tblCargando" cellspacing="3" class="bordeazul" width="370" align="center">
+                        <tbody><tr>
+                            <td align="center" class="tablaCargando">
+                                <span id="ctl00_Label1">Cargando información...</span></td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <img src="./04_files/loading.gif" id="ctl00_imgCargando">
+                            </td>
+                        </tr>
+                    </tbody></table>
+                    </div>                    
+                </td>
+	</tr>
+	<tr>
+		<td align="left">
+                    <hr class="separadorAmarillo">
+                 </td>
+	</tr>
+	<tr>
+		<td colspan="1"><table id="ctl00_tblFooter" class="textonormal" cellpadding="0" cellspacing="0" width="100%">
+			<tbody><tr>
+				<td style="text-align: center" bgcolor="#cfd9ec">
+                                Centro de Atención: 01 800 288 0228, Asesor opción 2, Promotor opción 1.                                
+                            </td>
+			</tr>
+			<tr>
+				<td style="text-align: center" bgcolor="#f0f3fc">
+                                Comentarios: <a href="mailto:agentes@monterrey-newyorklife.com.mx" class="ligas">
+                                    agentes@monterrey-newyorklife.com.mx
+                                    <img src="./04_files/mail_icon.gif" id="ctl00_IMG2" border="0" style="width: 28px; height: 11px"></a>
+                            </td>
+			</tr>
+			<tr>
+				<td bgcolor="#f0f3fc" style="text-align: center">
+                            © Seguros Monterrey New York Life - todos los derechos reservados.</td>
+			</tr>
+			<tr>
+				<td bgcolor="#f0f3fc" style="text-align: center; padding:5px">
+                           Ver. <span id="ctl00_lblVersion">1.7.8.0</span>
+                        </td>
+			</tr>
+		</tbody></table>
+		
+                </td>
+	</tr>
+</tbody></table>
+
+        &nbsp;
+    </div>
+    
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="6C34F8E6">
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="wh5bxXs2MC037RELlx85XmZOgLhQ07X4s3M3SoMTs7ju7zI91obCDrEEYK/8Hpn1JjgLk6fzIPCBUMI8NfYTPJ8PgNiDm8VcwiAx6wR5a/3yFqIuHPLiwJDNqE/K0qMr0Yn/f3Qyd5+hXKXRfzFp8pvNzvvQQ1eCW2ATssJCS4iQM0FoTcLY6C6skmUrj7LXnTSgcc+92Zk61FXAHs7Itv55z6A+4vlHT5BXlb1U2CeyKuOSZ1QAGNEYnkBi1PMi9CUCXFU7vjCQmKtkcE8W6VjnqgD+tg3Md5IZ0QiG9AxpEzBcFo+LP18EsB5nCOA9vzznWLeHpFCZQjorkuFzrqXTM/gzhUPHYedEhYmlQ+yw3ecY5Ih5lCmVjN+q8YUv3CbHnkq2RZ7ItZ5XJz0fuERDdZSAI3M4T24NtKM6FmI07BWu6xmM/2LPNSs0Cfnvt8Fl0aZHwTL4MM30zmgIZq1wAE5xsGEXOt8w6by8Dmgo1D1loQx595DxxS/OoLR9CBruPWh/XEyLin8XZsdHYpTwUmEX4xjShsP1P532AY7wF5ICKAzg6psRgngFa8luzPZJb0dz6YZWcyy3BswXKKCDhwnaDbys1fen/46tYu1kHbTzhToCJO/a09CiiIihgz12YfZS3vjy9BvmV/5JX2xfgIpxCLrD0LnlOeL4Z98icy/TI4g1AfmfSaZWEx4HXeqwBn5N2xwATv3eHHxG+hwt6wugXUoz+Hfnt9Y4Mg+Gqkzg03kC5cFeN0B8J+hJ9TDDrTZV4cqaD2ft4y1KmiceQKcQO0t5jk8yJuC722mRWSq3vaQC6m6MweW2qHVT72kQO1sbdmdvm4xO+21DqcuCyQudiFjPadTnqQsHW9sV2B7yuzlkUJEh1w0M+cVGz261b+kcmvJwABU2bvF0EpXMQLcx2MJvyuBsw060IZ0qfV5CUj4q/N1AMEmlaulGfqQZFCAa/9f3zZStdX0+XU9WZ1iUl6F68bia6xE3TrtsuhNkRdomsw2uLSJfQFv0lH/R/+5qTfFWVZ+h2eCjyjL9q5rY3VicjWmWP5ALAxc2VKKf4IpqPSLmm0Sj153C80PeP4ek0OXe2hve4MN/bKa9O27nc2hp8FjCPsiB1GgmiF7bkNwBiSh1L5a6zxh/mYI7lryiNbBFIhO3NVp9k/r70AkIfBhevhOk95m0TmH4cWorpEOGl/uzu2VXsZbHdkN6GnakmSdVwfdDZZASHcF+nUbPx53X4WGkMbUJzssmSbdKJxfm5daGU+mqIfx6QxEIsEzawoLreDZQqHyuwKALsX7th2MXHxrggMX6KT4LWJ8UoiXZGT6ysDCNOQrnvKah7sDvoK/tMtKqX1+uCn04rN4aop/LKJORZVfw3bxJ8IKMg2svbPmjRifT3t0xsFd3TUBLuLbURwKoH1MIAvWMP2KUZ7xD20Svf+zP18z7OeTFTUO1ILC3wbgabOMkbN+nGykZnOUUFanbE4gMxrxfPhE=">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var ctl00_mnuPrincipal_Data = new Object();
+ctl00_mnuPrincipal_Data.disappearAfter = 500;
+ctl00_mnuPrincipal_Data.horizontalOffset = 2;
+ctl00_mnuPrincipal_Data.verticalOffset = 0;
+ctl00_mnuPrincipal_Data.hoverClass = 'ctl00_mnuPrincipal_12';
+ctl00_mnuPrincipal_Data.hoverHyperLinkClass = 'ctl00_mnuPrincipal_11';
+ctl00_mnuPrincipal_Data.staticHoverClass = 'ctl00_mnuPrincipal_10';
+ctl00_mnuPrincipal_Data.staticHoverHyperLinkClass = 'ctl00_mnuPrincipal_9';
+ctl00_mnuPrincipal_Data.iframeUrl = '/AsesoresWeb/WebResource.axd?d=owX5s5wRIXt3PvHHsf60EnISOahSrYvi7D0k3rWV9u_7S8rN1Ng0DJ5VLmYsc6OPY4PbTzFvCTVNc2YBKnmA3J67rBY1&t=635588408026805809';
+//]]>
+</script>
+</form>
+
+
+
+<script language="javascript">
+    if (window != top) {
+        document.getElementById("ctl00_tblEncabezado").style.display = "none"
+        document.getElementById("divMaster").style.display = "none"
+        document.getElementById("ctl00_tblFooter").style.display = "none"
+        try {
+            parent.window.DivConsulta.scrollIntoView(true)
+        }
+        catch (err) {
+
+        }
+    }
+</script>
+
+
+<script type="text/javascript">
+    Cargando.style.display = 'none';
+</script>
+
+<div class="ui-dialog ui-widget ui-widget-content ui-corner-all no-titlebar" tabindex="-1" role="dialog" aria-labelledby="ui-id-1" style="display: none; outline: 0px; z-index: 1000;"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span id="ui-id-1" class="ui-dialog-title">&nbsp;</span><a href="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/PolizasAgente.aspx#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick">close</span></a></div><div class="loading-area ui-dialog-content ui-widget-content">
+        <img class="loading-image" src="./04_files/loading-load.gif">
+    </div></div><div class="ui-dialog ui-widget ui-widget-content ui-corner-all no-titlebar ui-dialog-buttons" tabindex="-1" role="dialog" aria-labelledby="ui-id-2" style="display: none; outline: 0px; z-index: 1000;"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span id="ui-id-2" class="ui-dialog-title">&nbsp;</span><a href="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/PolizasAgente.aspx#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick">close</span></a></div><div id="dialog-success" style="" class="ui-dialog-content ui-widget-content">
+        <div style="font-size: 15px; font-weight: bold; text-align: center; margin: 15px 20px 0 20px;" id="dialog-message">
+        </div>
+    </div><div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix"><div class="ui-dialog-buttonset"><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Aceptar</span></button></div></div></div><div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-dialog-buttons" tabindex="-1" role="dialog" aria-labelledby="ui-id-3" style="display: none; outline: 0px; z-index: 1000;"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span id="ui-id-3" class="ui-dialog-title">Envio de Documentacion de Renovación</span><a href="https://www.lineamonterrey.com.mx/AsesoresWeb/Consultas/Polizas/Asesor/PolizasAgente.aspx#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick">close</span></a></div><div id="dialog-modal" style="" class="ui-dialog-content ui-widget-content">
+        <br>
+        <table width="600px" border="0" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+                <td align="justify">
+                    <div style="width: 600px; margin: auto; text-align: left; padding-left: 15px;">
+                        <div style="height: 120px; width: 500px; font-size: 12px; text-align: justify; padding-left: 15px;
+                            padding-right: 15px; padding-top: 15px;">
+                            <div id="formularioRenovacion">
+                                <input id="polizaRenovacion" type="text" style="display: none;"><br>
+                                <input id="anioRenovacion" type="text" style="display: none;"><br>
+                                <input id="correoRenovacion" type="text" style="display: none;"><br>
+                                <label>
+                                    La documentación de Renovación correspondiente a la póliza <span style="font-weight: bold;" id="lblPolizaRenovacion"></span>&nbsp;se envira al correo:</label>
+                                <p id="txtCorreoOriginal" style="font-weight: bold;">
+                                </p>
+                                <br>
+                                <br>
+                                <label>
+                                    <input type="checkbox" name="chkOtro" id="chkOtro" onclick="fnOtroCorreo()">
+                                </label>
+                                <strong>Enviar a un correo diferente.</strong>
+                            </div>
+                            <br>
+                            <div id="divCorreoNuevoRe" style="display: none;">
+                                <center>
+                                    <span id="ctl00_ContentPlaceHolder1_LabelCorreonuevoRen" class="Text1">Ingresa Correo:</span>
+                                    <input name="ctl00$ContentPlaceHolder1$textCorreonuevoRen" type="text" maxlength="50" id="ctl00_ContentPlaceHolder1_textCorreonuevoRen" class="textonormal textCorreonuevoRen" onblur="fnValidarEmail(this)">
+                                </center>
+                            </div>
+                            <div id="txtMensaje" style="color: Red; font-size: .9em; display: none; text-align: center">
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+    </div><div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix"><div class="ui-dialog-buttonset"><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Envíar Correo</span></button><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Cancelar</span></button></div></div></div><img id="__overFlowElement" style="width: 1px; height: 236px; visibility: hidden; display: none;"></body></html>
